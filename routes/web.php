@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
+
 use App\Models\User;
 use App\Http\Controllers\CampaignsController;
 
@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('redirects' , 'App\Http\Controllers\HomeController@index');
 
 Route::get('compaigns', [\App\Http\Controllers\CampaignsController::class, 'index']);
-Route::get('Createcompaigns', [\App\Http\Controllers\CreatecampaignsController::class, 'index']);
+Route::get('Createcompaigns', [\App\Http\Controllers\CampaignsController::class, 'create']);
 Route::get('user',[\App\Http\Controllers\UserController::class,'index']);
 
 Route::group(['middleware' => ['role:Admin']], function () {
