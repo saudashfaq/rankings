@@ -1,7 +1,8 @@
 <div class="content-wrapper">
-
+    <x-app-layout>
         @include('layouts.contentheader')
     <!-- Main content -->
+
     <section class="content">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
@@ -584,4 +585,6 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+    </x-app-layout>
 </div>
+

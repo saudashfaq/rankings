@@ -28,13 +28,14 @@ class User extends Authenticatable
      * @var array
      */
     public $guard_name = 'web';
-
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
         'password',
-        'facebook_id',
-        'google_id'
+      'user_send_invitation'
+
+
     ];
 
     /**
