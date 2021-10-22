@@ -3,10 +3,11 @@
     Create New Campaigns
 </button>
 <div>
-
+    @if(count($checkbox_values) > 0)
     <button class="btn btn-danger" onclick="confirm('Are you sure?') || event.stopImmediatePropagation();" wire:click="deleteChecked">
         Delete Checked
     </button>
+    @endif
 
 
 </div>
@@ -41,7 +42,7 @@
                     <div class="card-body">
                         <div class="row">
 
-                            <form wire:submit.prevent="register">
+                            <form wire:submit.prevent="addKeyword">
 
 {{--                                {{$currentStep}}--}}
                                 {{-- STEP 1 --}}
@@ -233,16 +234,16 @@
                                     @endif
 
                                     @if ($currentStep == 1 || $currentStep == 2 )
-{{--                                        <button type="button" class="btn btn-md btn-success"--}}
-{{--                                                wire:click="increaseStep()"  wire:click="addKeyword()" >Next--}}
-{{--                                        </button>--}}
-                                            <button type="button" class="btn btn-md btn-success"
-                                                   wire:click="{{$currentStep == 2 ? 'addKeyword()':'store()'}}" >Next
-                                            </button>
+                                        <button type="button" style="margin-left: 340px" class="btn btn-md btn-success"
+                                                wire:click="store()" >Next
+                                        </button>
+{{--                                            <button type="button" class="btn btn-md btn-success"--}}
+{{--                                                   wire:click="{{$currentStep == 2 ? 'addKeyword()':'store()'}}" >Next--}}
+{{--                                            </button>--}}
                                     @endif
 
                                     @if ($currentStep == 3)
-                                        <button type="button"  class="btn btn-md btn-primary">Save</button>
+                                        <button type="submit"  class="btn btn-md btn-primary">Save</button>
                                     @endif
 
 

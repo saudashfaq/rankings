@@ -77,7 +77,7 @@
 
                                 </div>
 
-                            @include('livewire.Createcampaign')
+                            @include('livewire.campaigns.create_campaign')
 
                             <!-- /.card-body -->
                                 <div class="card-footer clearfix">

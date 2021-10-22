@@ -7,7 +7,7 @@
 
 <div class="form-group">
 
-        <a href="http://localhost:8000/registration/{{ $data['name']  }}/{{ $data['email'] }}">
+        <a href="http://localhost:8000/registration_new_user/{{ $data['name']  }}/{{ $data['email'] }}">
             Accept invitation
         </a>
 

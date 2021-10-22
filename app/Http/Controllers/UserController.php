@@ -72,7 +72,7 @@ class UserController extends Controller
 
         $user =User::where('email', $email)->first();
 
-        return view('pages.registration',['name' => $name, 'email' => $email , 'id' => $user->id]);
+        return view('users.registration_new_user',['name' => $name, 'email' => $email , 'id' => $user->id]);
 
         //validate secure URL okk
         //get user id from url ok
@@ -124,7 +124,7 @@ class UserController extends Controller
     {
         $users = User::get();
 
-        return view('pages.user',compact('users'));
+        return view('users.user',compact('users'));
 
     }
 //    /**

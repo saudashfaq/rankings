@@ -33,11 +33,12 @@ class CampaignTable extends TableComponent
   public $rank_check_frequncy;
  public $user_account_id;
  public $keyword;
- public $campaign_id;
+    public $checkbox_side = 'right';
+    public $campaign_id;
  public $updateMode = false;
  public $checkbox = true;
  public $checkbox_attribute = 'id';
- public $header_view = 'livewire.header_Campaign';
+ public $header_view = 'livewire.campaigns.header_campaign';
 
 //    public $abc_test = 'Hello';
     public $Campaign;
@@ -247,7 +248,7 @@ class CampaignTable extends TableComponent
             Column::make('search_term')->searchable()->sortable(),
             Column::make('language_name')->searchable()->sortable(),
             //Column::make('user_id')->searchable()->sortable(),
-            Column::make('Action')->view('campaigns-action'),
+            Column::make('Action')->view('livewire.campaigns.edit_campaign'),
 //            Column::make('Created At')->searchable()->sortable(),
 //            Column::make('Updated At')->searchable()->sortable(),
         ];
