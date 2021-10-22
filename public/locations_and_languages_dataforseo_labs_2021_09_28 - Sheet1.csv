@@ -1,0 +1,111 @@
+location_code,location_name,location_code_parent,country_iso_code,location_type
+2012,Algeria,,DZ,Country
+2012,Algeria,,DZ,Country
+2024,Angola,,AO,Country
+2031,Azerbaijan,,AZ,Country
+2032,Argentina,,AR,Country
+2036,Australia,,AU,Country
+2040,Austria,,AT,Country
+2048,Bahrain,,BH,Country
+2050,Bangladesh,,BD,Country
+2051,Armenia,,AM,Country
+2056,Belgium,,BE,Country
+2056,Belgium,,BE,Country
+2056,Belgium,,BE,Country
+2068,Bolivia,,BO,Country
+2076,Brazil,,BR,Country
+2100,Bulgaria,,BG,Country
+2104,Myanmar (Burma),,MM,Country
+2112,Belarus,,BY,Country
+2116,Cambodia,,KH,Country
+2120,Cameroon,,CM,Country
+2124,Canada,,CA,Country
+2124,Canada,,CA,Country
+2144,Sri Lanka,,LK,Country
+2152,Chile,,CL,Country
+2158,Taiwan,,TW,Region
+2170,Colombia,,CO,Country
+2188,Costa Rica,,CR,Country
+2191,Croatia,,HR,Country
+2196,Cyprus,,CY,Country
+2196,Cyprus,,CY,Country
+2203,Czechia,,CZ,Country
+2208,Denmark,,DK,Country
+2218,Ecuador,,EC,Country
+2222,El Salvador,,SV,Country
+2233,Estonia,,EE,Country
+2246,Finland,,FI,Country
+2250,France,,FR,Country
+2276,Germany,,DE,Country
+2288,Ghana,,GH,Country
+2300,Greece,,GR,Country
+2320,Guatemala,,GT,Country
+2344,Hong Kong,,HK,Region
+2344,Hong Kong,,HK,Region
+2348,Hungary,,HU,Country
+2356,India,,IN,Country
+2356,India,,IN,Country
+2360,Indonesia,,ID,Country
+2360,Indonesia,,ID,Country
+2372,Ireland,,IE,Country
+2376,Israel,,IL,Country
+2376,Israel,,IL,Country
+2380,Italy,,IT,Country
+2384,Cote d'Ivoire,,CI,Country
+2392,Japan,,JP,Country
+2398,Kazakhstan,,KZ,Country
+2400,Jordan,,JO,Country
+2404,Kenya,,KE,Country
+2410,South Korea,,KR,Country
+2428,Latvia,,LV,Country
+2440,Lithuania,,LT,Country
+2458,Malaysia,,MY,Country
+2458,Malaysia,,MY,Country
+2470,Malta,,MT,Country
+2484,Mexico,,MX,Country
+2504,Morocco,,MA,Country
+2528,Netherlands,,NL,Country
+2554,New Zealand,,NZ,Country
+2558,Nicaragua,,NI,Country
+2566,Nigeria,,NG,Country
+2578,Norway,,NO,Country
+2586,Pakistan,,PK,Country
+2586,Pakistan,,PK,Country
+2600,Paraguay,,PY,Country
+2604,Peru,,PE,Country
+2608,Philippines,,PH,Country
+2608,Philippines,,PH,Country
+2616,Poland,,PL,Country
+2620,Portugal,,PT,Country
+2642,Romania,,RO,Country
+2643,Russia,,RU,Country
+2682,Saudi Arabia,,SA,Country
+2686,Senegal,,SN,Country
+2688,Serbia,,RS,Country
+2702,Singapore,,SG,Country
+2702,Singapore,,SG,Country
+2703,Slovakia,,SK,Country
+2704,Vietnam,,VN,Country
+2704,Vietnam,,VN,Country
+2705,Slovenia,,SI,Country
+2710,South Africa,,ZA,Country
+2724,Spain,,ES,Country
+2752,Sweden,,SE,Country
+2756,Switzerland,,CH,Country
+2756,Switzerland,,CH,Country
+2764,Thailand,,TH,Country
+2784,United Arab Emirates,,AE,Country
+2784,United Arab Emirates,,AE,Country
+2788,Tunisia,,TN,Country
+2792,Turkey,,TR,Country
+2804,Ukraine,,UA,Country
+2804,Ukraine,,UA,Country
+2807,North Macedonia,,MK,Country
+2818,Egypt,,EG,Country
+2818,Egypt,,EG,Country
+2826,United Kingdom,,GB,Country
+2840,United States,,US,Country
+2840,United States,,US,Country
+2854,Burkina Faso,,BF,Country
+2858,Uruguay,,UY,Country
+2862,Venezuela,,VE,Country

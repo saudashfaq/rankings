@@ -1,7 +1,15 @@
 <button data-toggle="modal" data-target="#createCampaign"
         class="btn btn-light "><i class="fa fa-plus"></i>
-    Create New Campaign
+    Create New Campaigns
 </button>
+<div>
+
+    <button class="btn btn-danger" onclick="confirm('Are you sure?') || event.stopImmediatePropagation();" wire:click="deleteChecked">
+        Delete Checked
+    </button>
+
+
+</div>
 
 {{--<button data-toggle="modal" wire:click="readCsv"--}}
 {{--        class="btn btn-light ">--}}
@@ -20,6 +28,7 @@
                 </button>
 
             </div>
+
 {{--            <div wire:load="readCsv">--}}
 
 {{--            </div>--}}
@@ -34,6 +43,7 @@
 
                             <form wire:submit.prevent="register">
 
+{{--                                {{$currentStep}}--}}
                                 {{-- STEP 1 --}}
 
                                 @if ($currentStep == 1)
@@ -41,7 +51,7 @@
 
                                     <div class="step-one">
                                         <div class="card">
-                                            <div  class="card-header bg-danger text-white">STEP 1/4 -Enter Campaigns
+                                            <div  class="card-header bg-danger text-white">STEP 1/3 -Enter Campaigns
                                                 Details
                                             </div>
                                             <div class="card-body">
@@ -49,13 +59,10 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="">Campaign Title</label>
-                                                            <select class="form-control" wire:model="campaign_title">
-                                                                <option value="" selected>Choose Campaign title</option>
-                                                                <option value="abc">abc</option>
-                                                                <option value="def">def</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" placeholder="Enter Your campaign name" wire:model="campaign_name">
+
                                                             <span
-                                                                class="text-danger">@error('campaign_title'){{ $message }}@enderror</span>
+                                                                class="text-danger">@error('campaign_name'){{ $message }}@enderror</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -63,26 +70,28 @@
                                                             <label for="">Website Address</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Website Address"
-                                                                   wire:model="website_address">
+                                                                   wire:model="url">
                                                             <span
-                                                                class="text-danger">@error('website_address'){{ $message }}@enderror</span>
+                                                                class="text-danger">@error('url'){{ $message }}@enderror</span>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label  for="">Location</label>
-{{--                                                            <select wire:click="readCsv()" class="form-control"  >--}}
-{{--                                                                <option >Enter Your Location</option>--}}
+{{--                                                            <select  wire:model="search_term"  wire:keydown.debounce.500ms="readCsv()" class="form-control"  >--}}
 {{--                                                                @if($location)--}}
 {{--                                                                @foreach($location as $loc)--}}
 {{--                                                                    <option value="{{$loc}}">{{$loc}}</option>--}}
 {{--                                                                @endforeach--}}
 {{--                                                                @endif--}}
 {{--                                                            </select>--}}
-{{--                                                            --}}
-                                                            <input type="text" wire:click="readCsv()" placeholder="Enter Your Location" class="form-control"  list="location" >
+
+
+
+                                                            <input type="text"  wire:model="search_term"   wire:keydown.debounce.500ms="readCsv()" placeholder="Enter Your Location" class="form-control" list="location" >
                                                             <datalist id="location">
                                                                 @if($location)
                                                                     @foreach($location as $loc)
@@ -95,8 +104,11 @@
                                                                 class="text-danger">@error('location'){{ $message }}@enderror</span>
                                                         </div>
                                                     </div>
+
+{{--                                                    <input type="text" name="language_code" value="abc" wire:model="language_code">--}}
                                                     <div class="col-md-6">
                                                         <div class="form-group">
+
                                                             <label for="">Group</label>
                                                             <select class="form-control" wire:model="group">
                                                                 <option value="" selected>Select Group</option>
@@ -111,13 +123,13 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="">Language</label>
-                                                            <select class="form-control" wire:model="language">
-                                                                <option value="" selected>Select Language</option>
+                                                            <select class="form-control" wire:model="language_name">
+                                                                <option value="">Select</option>
                                                                 <option value="English">English</option>
                                                                 <option value="Urdu">Urdu</option>
                                                             </select>
                                                             <span
-                                                                class="text-danger">@error('language'){{ $message }}@enderror</span>
+                                                                class="text-danger">@error('language_name'){{ $message }}@enderror</span>
                                                         </div>
 
                                                     </div>
@@ -147,7 +159,7 @@
 
                                     <div class="step-two">
                                         <div class="card">
-                                            <div class="card-header bg-secondary text-white">STEP 2/4 - Enter Keywords
+                                            <div class="card-header bg-secondary text-white">STEP 2/3 - Enter Keywords
                                             </div>
                                             <div class="card-body">
                                                 <div class="frameworks d-flex flex-column align-items-left mt-2">
@@ -167,88 +179,70 @@
 
                                     <div class="step-three">
                                         <div class="card">
-                                            <div class="card-header bg-secondary text-white">STEP 3/4 - Frameworks
+                                            <div class="card-header bg-secondary text-white">STEP 3/3 - Frameworks
                                                 experience
                                             </div>
                                             <div class="card-body">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                                                explicabo, impedit maxime possimus excepturi veniam ut error sit,
-                                                molestias aliquam repellat eos porro? Sit ex voluptates nemo veritatis
-                                                delectus quia?
-                                                <div class="frameworks d-flex flex-column align-items-left mt-2">
-                                                    <label for="laravel">
-                                                        <input type="checkbox" id="laravel" value="laravel"
-                                                               wire:model="frameworks"> Laravel
-                                                    </label>
-                                                    <label for="codeigniter">
-                                                        <input type="checkbox" id="codeigniter" value="codeigniter"
-                                                               wire:model="frameworks"> Codeigniter
-                                                    </label>
-                                                    <label for="vuejs">
-                                                        <input type="checkbox" id="vuejs" value="vuejs"
-                                                               wire:model="frameworks"> Vue Js
-                                                    </label>
-                                                    <label for="cakePHP">
-                                                        <input type="checkbox" id="cakePHP" value="cakePHP"
-                                                               wire:model="frameworks"> CakePHP
-                                                    </label>
-                                                </div>
-                                                <span
-                                                    class="text-danger">@error('frameworks'){{ $message }}@enderror</span>
+                                                Are you sure you can create this campaigns
                                             </div>
                                         </div>
                                     </div>
                                 @endif
 
                                 {{-- STEP 4 --}}
-                                @if ($currentStep == 4)
+{{--                                @if ($currentStep == 4)--}}
 
 
-                                    <div class="step-four">
-                                        <div class="card">
-                                            <div class="card-header bg-secondary text-white">STEP 4/4 - Attachments
-                                            </div>
-                                            <div class="card-body">
-                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                                <div class="form-group">
-                                                    <label for="cv">CV</label>
-                                                    <input type="file" class="form-control" wire:model="cv">
-                                                    <span class="text-danger">@error('cv'){{ $message }}@enderror</span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="terms" class="d-block">
-                                                        <input type="checkbox" id="terms" wire:model="terms"> You must
-                                                        agree with our <a href="#">Terms and Conditions</a>
-                                                    </label>
-                                                    <span
-                                                        class="text-danger">@error('terms'){{ $message }}@enderror</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+{{--                                    <div class="step-four">--}}
+{{--                                        <div class="card">--}}
+{{--                                            <div class="card-header bg-secondary text-white">STEP 4/4 - Attachments--}}
+{{--                                            </div>--}}
+{{--                                            <div class="card-body">--}}
+{{--                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit.--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="cv">CV</label>--}}
+{{--                                                    <input type="file" class="form-control" wire:model="cv">--}}
+{{--                                                    <span class="text-danger">@error('cv'){{ $message }}@enderror</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="terms" class="d-block">--}}
+{{--                                                        <input type="checkbox" id="terms" wire:model="terms"> You must--}}
+{{--                                                        agree with our <a href="#">Terms and Conditions</a>--}}
+{{--                                                    </label>--}}
+{{--                                                    <span--}}
+{{--                                                        class="text-danger">@error('terms'){{ $message }}@enderror</span>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                @endif
+{{--                                @endif--}}
 
                                 <div class="action-buttons d-flex justify-content-between bg-white pt-2 pb-2">
 
                                     @if ($currentStep == 1)
-                                        <div></div>
+{{--                                        <button type="button" class="btn btn-md btn-success"--}}
+{{--                                                wire:click="store()" > save--}}
+{{--                                        </button>--}}
                                     @endif
 
-                                    @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4)
+                                    @if ($currentStep == 2 || $currentStep == 3 )
                                         <button type="button" class="btn btn-md btn-secondary"
                                                 wire:click="decreaseStep()">Back
                                         </button>
                                     @endif
 
-                                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
-                                        <button type="button" class="btn btn-md btn-success"
-                                                wire:click="increaseStep()">Next
-                                        </button>
+                                    @if ($currentStep == 1 || $currentStep == 2 )
+{{--                                        <button type="button" class="btn btn-md btn-success"--}}
+{{--                                                wire:click="increaseStep()"  wire:click="addKeyword()" >Next--}}
+{{--                                        </button>--}}
+                                            <button type="button" class="btn btn-md btn-success"
+                                                   wire:click="{{$currentStep == 2 ? 'addKeyword()':'store()'}}" >Next
+                                            </button>
                                     @endif
 
-                                    @if ($currentStep == 4)
-                                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                                    @if ($currentStep == 3)
+                                        <button type="button"  class="btn btn-md btn-primary">Save</button>
                                     @endif
 
 
@@ -270,7 +264,17 @@
     </div>
 
 </div>
-
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#select2').select2();
+            $('#select2').on('change', function (e) {
+                var data = $('#select2').select2("val");
+            @this.set('selCity', data);
+            });
+        });
+    </script>
+@endpush
 
 {{--<!--  add new user Modal -->--}}
 {{--<div wire:ignore.self class="modal fade" id="createCampaign" tabindex="-1" role="dialog"--}}

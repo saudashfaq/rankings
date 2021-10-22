@@ -37,11 +37,11 @@
 
 
 @livewireScripts
-<script type="text/javascript">
-    window.livewire.on('userStore', () => {
-        $('#exampleModal').modal('hide');
-    });
+{{--<script type="text/javascript">--}}
+{{--    window.livewire.on('userStore', () => {--}}
+{{--        $('#exampleModal').modal('hide');--}}
+{{--    });--}}
 
-</script>
+{{--</script>--}}
 </body>
 </html>
