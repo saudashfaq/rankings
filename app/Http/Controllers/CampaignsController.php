@@ -10,10 +10,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class CampaignsController extends Controller
 {
 
-
-
     public function index(){
-        return view('pages.campaigns');
+        return view('campaigns.campaign');
     }
 
 }

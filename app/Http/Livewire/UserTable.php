@@ -16,7 +16,7 @@ class UserTable extends TableComponent
     public $updateMode = false;
     public $checkbox = true;
     public $checkbox_attribute = 'id';
-    public $header_view = 'livewire.header';
+    public $header_view = 'livewire.users.header_user';
 
     public function query()
     {
@@ -66,7 +66,7 @@ class UserTable extends TableComponent
 
         $user =User::where('email', $email)->first();
 
-        return view('pages.registration',['name' => $name, 'email' => $email , 'id' => $user->id]);
+        return view('users.registration_new_user',['name' => $name, 'email' => $email , 'id' => $user->id]);
 
         //validate secure URL okk
         //get user id from url ok
@@ -154,7 +154,7 @@ class UserTable extends TableComponent
             Column::make('Name')->searchable()->sortable(),
             Column::make('Email')->searchable()->sortable(),
             Column::make('Role'),
-            Column::make('Action')->view('table-actions'),
+            Column::make('Action')->view('livewire.users.edit_user'),
 //            Column::make('Created At')->searchable()->sortable(),
 //            Column::make('Updated At')->searchable()->sortable(),
         ];

@@ -1,3 +1,10 @@
+
+{{--<button class="btn btn-primary" wire:click="showUser({{ $model->id }})">Show</button>--}}
+<button data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $model->id }})"
+        class="btn btn-info">
+    <i class="fa fa-edit"></i>
+    Edit
+</button>
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -12,7 +19,7 @@
                 <form>
                     <div class="form-group">
                         <input type="hidden" wire:model="user_id">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label for="exampleFormControlInput1">Update your Name</label>
                         <input type="text" class="form-control" wire:model="name" id="exampleFormControlInput1" placeholder="Enter Name">
                         @error('name') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>

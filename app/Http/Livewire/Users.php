@@ -20,7 +20,7 @@ class Users extends Component
     public function render()
     {
         $this->users = User::all();
-        return view('livewire.user');
+        return view('livewire.users.user');
     }
     private function resetInputFields(){
         $this->name = '';
