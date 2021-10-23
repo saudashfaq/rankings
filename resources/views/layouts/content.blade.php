@@ -1,6 +1,7 @@
+{{--
 <div class="content-wrapper">
     <x-app-layout>
-        @include('layouts.contentheader')
+        @include('layouts.content_header')
     <!-- Main content -->
 
     <section class="content">
@@ -588,3 +589,4 @@
     </x-app-layout>
 </div>
 
+--}}

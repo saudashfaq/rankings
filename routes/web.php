@@ -44,7 +44,7 @@ Route::get('campaigns', [\App\Http\Controllers\CampaignsController::class, 'inde
 
 //for user control
 Route::get('teammemberinvitationform',[\App\Http\Controllers\UserController::class,'showTeamMemberInvitationForm']);
-Route::get('user',[\App\Http\Controllers\UserController::class,'index']);
+Route::get('users',[\App\Http\Controllers\UserController::class,'index']);
 //Route::get('delete/{id}',[\App\Http\Controllers\UserController::class,'destroy']);
 //Route::get('edit/{id}',[\App\Http\Controllers\UserController::class,'show']);
 //Route::post('edit/{id}',[\App\Http\Controllers\UserController::class,'edit']);

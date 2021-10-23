@@ -16,7 +16,11 @@ class UserTable extends TableComponent
     public $updateMode = false;
     public $checkbox = true;
     public $checkbox_attribute = 'id';
-    public $header_view = 'livewire.users.header_user';
+
+    //This is livewire datatable property we can provide anything in
+    //header view
+    public $header_view = 'users.users-table-header';
+
 
     public function query()
     {
@@ -58,6 +62,7 @@ class UserTable extends TableComponent
         //URL would have user id ok
 
     }
+
 
     public function showAcceptInvitationFormToTeamMember(Request $request) {
 
@@ -125,6 +130,7 @@ class UserTable extends TableComponent
 
 
     }
+
 
     public function update()
     {

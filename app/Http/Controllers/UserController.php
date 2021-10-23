@@ -124,7 +124,7 @@ class UserController extends Controller
     {
         $users = User::get();
 
-        return view('users.user',compact('users'));
+        return view('users.users',compact('users'));
 
     }
 //    /**
