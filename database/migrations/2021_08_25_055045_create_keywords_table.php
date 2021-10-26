@@ -14,11 +14,11 @@ class CreateKeywordsTable extends Migration
     public function up()
     {
         Schema::create('keywords', function (Blueprint $table) {
-            $table->bigInteger('keyword_id');
+            $table->bigIncrements('keyword_id');
             $table->integer('user_account_id');
-            $table->bigInteger('	campaign_id');
+            $table->bigInteger('campaign_id');
             $table->string('keyword');
-            $table->date('latest_rank_checked_on');
+            $table->date('latest_rank_checked_on')->nullable();
             $table->timestamps();
         });
     }

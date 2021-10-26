@@ -15,13 +15,11 @@ class Keyword extends Model
      * @var array
      */
 
-    protected $table ='campaigns';
+    protected $table ='keywords';
     protected $fillable = [
         'keyword',
-
-
-
-
+        'user_account_id',
+        'campaign_id',
 
 
     ];
@@ -32,10 +30,7 @@ class Keyword extends Model
      * @var array
      */
     protected $hidden = [
-//        'password',
-//        'remember_token',
-//        'two_factor_recovery_codes',
-//        'two_factor_secret',
+
     ];
 
     /**
@@ -53,7 +48,8 @@ class Keyword extends Model
      * @var array
      */
     protected $appends = [
-//        'profile_photo_url',
+
+
     ];
 
 
