@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
-use App\Models\User;
-use http\Env\Request;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
@@ -38,9 +36,8 @@ class CampaignTable extends TableComponent
  public $updateMode = false;
  public $checkbox = true;
  public $checkbox_attribute = 'id';
- public $header_view = 'livewire.campaigns.header_campaign';
+ public $header_view = 'campaigns.campaigns-table-header';
 
-//    public $abc_test = 'Hello';
     public $Campaign;
 
     public function query()
@@ -136,21 +133,25 @@ class CampaignTable extends TableComponent
     }
 
 
-    public function addKeyword()
+    public function addKeywords()
     {
 
+        //dd($this->keywords);
         $this->validate([
-            'keyword' => 'required',
-
-
+            'keywords' => 'required',
 
         ]);
+
        Keyword::create([
 
-           'keyword' => $this->keyword,
+           'keyword' => $this->keywords,
+           'user_account_id'=>auth()->user()->id,
+           'campaign_id'=> 1,
 
 
-        ]);
+       ]);
+
+        $this->increaseStep();
         $this->resetInput();
 
     }
