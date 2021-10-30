@@ -63,20 +63,41 @@ Route::get('/sendemail/send',[\App\Http\Controllers\UserController::class,'creat
 //Route::view('users','livewire.home');
 
 //for create roles
-//Route::get('create_roles', function (){
-//
-////    Role::create(['name' => 'app_admin', 'name' => 'administrator', 'name' =>
-////        'teamMember']);
-//});
+Route::get('create_roles', function (){
+
+    \App\Models\Role::create(['name' => 'app_admin']);
+   \App\Models\Role::create(['name' =>  'administrator']);
+    \App\Models\Role::create(['name' =>  'teamMember']);
+
+
+
+    echo "Your Role Is Created";
+});
+
+Route::get('create_permission', function (){
+
+
+    \App\Models\Premission::create(['name' => 'add campaign']);
+    \App\Models\Premission::create(['name' =>  'view campaign']);
+    \App\Models\Premission::create(['name' =>  'edit campaign']);
+    \App\Models\Premission::create(['name' =>  'delete campaign']);
+    \App\Models\Premission::create(['name' => 'add user']);
+    \App\Models\Premission::create(['name' =>  'view user']);
+    \App\Models\Premission::create(['name' =>  'edit user']);
+    \App\Models\Premission::create(['name' =>  'delete user']);
+
+    echo "Your Permission Is Created";
+});
+
 
 
 //Route::get('assign_role', function (){
 //
 //    $user = User::find(1);
 //
-//    $role = Role::where('name', 'app_admin')->first()->name;
+//    $role = \App\Models\Role::where('name', 'admin')->firstorfail()->name;
 //    $user->assignRole($role);
-
+//
 //});
 
 //Route::group(['middleware' => ['role:Admin']], function () {

@@ -27,6 +27,7 @@ class UserTable extends TableComponent
         return User::query();
     }
 
+
     public function createTeamMember(Request $request){
         {
 

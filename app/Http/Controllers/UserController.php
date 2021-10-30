@@ -26,7 +26,7 @@ class UserController extends Controller
 
 
        $roles= \App\Models\Role::all();
-      //  Role::create(['name' => 'app_admin', 'administrator','teamMember']);
+//       Role::create(['name' => 'app_admin', 'administrator','teamMember']);
         return view('pages.teammemberinvitationform',['roles'=>$roles]);
     }
 
