@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKeywordsTable extends Migration
+class KeywordTaskPostFailedLogs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateKeywordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('keywords', function (Blueprint $table) {
-            $table->bigIncrements('keyword_id');
-            $table->integer('user_account_id');
-            $table->bigInteger('campaign_id');
-            $table->string('keyword',255);
-            $table->date('latest_rank_checked_on')->nullable();
+
+        //
+
+        Schema::create('keyword_task_post_failed_logs',function (Blueprint $table){
+
+            $table->id();
+            $table->bigInteger('keyword_task_id')->nullable()->comment('This is keyword_tasks table unique id');
+            $table->text('data')->nullable();
             $table->timestamps();
+
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -30,6 +34,6 @@ class CreateKeywordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keywords');
+        //
     }
 }

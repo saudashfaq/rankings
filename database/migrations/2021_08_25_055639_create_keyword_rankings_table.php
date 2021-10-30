@@ -19,15 +19,19 @@ class CreateKeywordRankingsTable extends Migration
             $table->integer('user_account_id');
             $table->bigInteger('	campaign_id');
             $table->date('rank_for_date');
-            $table->timestamps();
-            $table->tinyInteger('google_organic');
+            $table->tinyInteger('google_organic')->nullable();
+            $table->text('google_organic_stats')->nullable();
             $table->tinyInteger('google_organic_change');
             $table->tinyInteger('google_local');
+            $table->text('google_local_stats');
             $table->tinyInteger('google_local_change');
             $table->tinyInteger('google_mobile');
+            $table->text('google_mobile_stats');
             $table->tinyInteger('google_mobile_change');
             $table->tinyInteger('bing_organic');
-            $table->tinyInteger('bing_organic_chnage');
+            $table->text('bing_organic_stats');
+            $table->tinyInteger('bing_organic_change');
+            $table->timestamps();
         });
     }
 

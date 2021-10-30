@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Premission extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Role extends Model
      * @var array
      */
 
-    protected $table ='roles';
+    protected $table ='permissions';
     protected $fillable = [
         'name',
 
@@ -28,5 +28,6 @@ class Role extends Model
      *
      * @var array
      */
+
 
 }

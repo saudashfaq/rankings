@@ -1,7 +1,10 @@
+{{--@can("add campaign")--}}
 <button data-toggle="modal" data-target="#createCampaign"
         class="btn btn-light "><i class="fa fa-plus"></i>
     Create New Campaigns
 </button>
+
+{{--@endcan--}}
 
 
 {{--<!--  add new campaigns Modal -->--}}
@@ -76,7 +79,7 @@
                                                             {{--                                                            </select>--}}
 
 
-                                                            <input type="text" wire:model="search_term"
+                                                            <input type="text" name="location_name" wire:model="search_term"
                                                                    wire:keydown.debounce.500ms="readCsv()"
                                                                    placeholder="Enter Your Location"
                                                                    class="form-control" list="location">
@@ -151,7 +154,7 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="frameworks d-flex flex-column align-items-left mt-2">
-                                                    <textarea name="keywords" wire:model="keywords" cols="50"
+                                                    <textarea name="keywords" placeholder="Press Enter Key To Add New Keywords" wire:model="keywords" cols="50"
                                                               rows="5"></textarea>
                                                 </div>
                                                 <span

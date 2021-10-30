@@ -16,12 +16,13 @@ class Campaign extends Model
      * @var array
      */
 
+    protected $primaryKey = 'campaign_id';
     protected $table ='campaigns';
     protected $fillable = [
         'campaign_name',
         'language_name',
-//        'location_name',
-       'search_term',
+     'location_name',
+       //'search_term',
         'url',
         'user_id',
      'status',

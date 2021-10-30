@@ -9,6 +9,8 @@ use Kdion4891\LaravelLivewireTables\TableComponent;
 
 class CampaignTable extends TableComponent
 {
+
+    public $sort_attribute = 'campaign_id';
     public $campaign_name;
     public $url;
     public $location;
@@ -30,12 +32,13 @@ class CampaignTable extends TableComponent
   public $rank_check_due_time;
   public $rank_check_frequncy;
  public $user_account_id;
+ public $location_name;
  public $keyword;
     public $checkbox_side = 'right';
     public $campaign_id;
  public $updateMode = false;
  public $checkbox = true;
- public $checkbox_attribute = 'id';
+ public $checkbox_attribute = 'campaign_id';
  public $header_view = 'campaigns.campaigns-table-header';
 
     public $Campaign;
@@ -63,7 +66,6 @@ class CampaignTable extends TableComponent
             'url'=>'required',
             'search_term'=>'required',
 
-
         ]);
        Campaign::create([
            'user_id'=> auth()->user()->id,
@@ -71,12 +73,12 @@ class CampaignTable extends TableComponent
             'language_name' => $this->language_name,
             'location'=>$this->location,
             'url'=>$this->url,
-           'search_term'=>$this->search_term,
+           'location_name'=>$this->search_term,
            'status'=> 2,
-           'location_code'=>12,
+           'location_code'=>1,
            'language_code'=>'en',
            'campaign_logo'=>'ab',
-           'country_iso_code'=>2,
+           'country_iso_code'=>0,
            'rank_check_due_time'=>2,
            'rank_check_frequncy'=>1,
            'user_account_id'=>1,
@@ -96,7 +98,7 @@ class CampaignTable extends TableComponent
     public function edit($id)
     {
         $this->updateMode = true;
-        $campaign = Campaign::where('id',$id)->first();
+        $campaign = Campaign::where('campaign_id',$id)->first();
         $this->campaign_id = $id;
         $this->campaign_name = $campaign->campaign_name;
         $this->language_name = $campaign->language_name;
@@ -238,7 +240,7 @@ class CampaignTable extends TableComponent
 
     public function deleteChecked()
     {
-        Campaign::whereIn('id', $this->checkbox_values)->delete();
+        Campaign::whereIn('campaign_id', $this->checkbox_values)->delete();
     }
 
 
@@ -246,7 +248,7 @@ class CampaignTable extends TableComponent
     {
         return [
             Column::make('campaign_name')->searchable()->sortable(),
-            Column::make('search_term')->searchable()->sortable(),
+            Column::make('location_name')->searchable()->sortable(),
             Column::make('language_name')->searchable()->sortable(),
             //Column::make('user_id')->searchable()->sortable(),
             Column::make('Action')->view('livewire.campaigns.edit_campaign'),

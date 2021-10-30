@@ -33,9 +33,9 @@
 
                         <select id="role" name="role" class="form-control">
                             <option value="">Assign the role</option>
-                            {{--                                @foreach($roles as $role)--}}
-                            {{--                                    <option value="{{$role->name}}">{{$role->name}}</option>--}}
-                            {{--                                @endforeach--}}
+                                                            @foreach(\App\Models\Role::all() as $role)
+                                                                <option value="{{$role->name}}">{{$role->name}}</option>
+                                                            @endforeach
                         </select>
                     </div>
 
