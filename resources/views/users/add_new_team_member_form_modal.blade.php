@@ -18,7 +18,10 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
+            @include('general.form_validation_errors')
             <div class="modal-body">
+
+
                 <form  method="GET" action="{{url('sendemail/send')}}">
                     <div class="form-group">
                         <label>Enter Your Name</label>
