@@ -6,11 +6,10 @@
 
 {{--@endcan--}}
 
-
 {{--<!--  add new campaigns Modal -->--}}
 <div wire:ignore.self class="modal fade" id="createCampaign" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="margin-top: 100px;">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create New Campaign</h5>
@@ -225,7 +224,7 @@
                                     @endif
 
                                     @if ($currentStep == 1 )
-                                        <button type="button" style="margin-left: 340px" class="btn btn-md btn-success"
+                                        <button type="button" style="margin-left: 650px" class="btn btn-md btn-success"
                                                 wire:click="store()">Next
                                         </button>
                                         {{--                                            <button type="button" class="btn btn-md btn-success"--}}
@@ -235,7 +234,7 @@
 
                                     @if ($currentStep == 2 )
 
-                                        <button type="button" style="margin-left:340px" class="btn btn-md btn-success"
+                                        <button type="button" style="margin-left:550px" class="btn btn-md btn-success"
                                                 wire:click="addKeywords()">Next
                                         </button>
 
