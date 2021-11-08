@@ -24,38 +24,35 @@
     <div class="card">
         <div class="card-body login-card-body">
 
-
             <x-guest-layout>
-
 
                     <x-jet-validation-errors class="mb-4" />
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
                         <div>
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
 
-                        <div class="mt-4">
+                        <div class="mt-2">
                             <x-jet-label for="email" value="{{ __('Email') }}" />
                             <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
                         </div>
 
-                        <div class="mt-4">
+                        <div class="mt-2">
                             <x-jet-label for="password" value="{{ __('Password') }}" />
                             <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-                            <b style="color: red;">Valid password should be Minimum 8 character's long and should have one special character.</b>
+                            <p style="color:red;">Valid password should be Minimum 8 character's long and should have one special character.</p>
                         </div>
 
-                        <div class="mt-4">
+                        <div class="mt-2">
                             <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                            <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <x-jet-input id="password_confirmation" class="block mt-0 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
                         </div>
 
                         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                            <div class="mt-4">
+                            <div class="mt-3">
                                 <x-jet-label for="terms">
                                     <div class="flex items-center">
                                         <x-jet-checkbox name="terms" id="terms"/>

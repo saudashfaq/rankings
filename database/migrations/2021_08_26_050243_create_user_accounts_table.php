@@ -17,7 +17,7 @@ class CreateUserAccountsTable extends Migration
             $table->id();
             $table->string('business_name');
             $table->string('email');
-            $table->string('	logo');
+            $table->string('logo');
             $table->tinyInteger('status');
             $table->timestamps();
         });
