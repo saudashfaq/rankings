@@ -80,7 +80,7 @@ class CampaignTable extends TableComponent
            'campaign_logo'=>'ab',
            'country_iso_code'=>0,
            'rank_check_due_time'=>2,
-           'rank_check_frequncy'=>1,
+//           'rank_check_frequncy'=>1,
            'user_account_id'=>1,
 
 
