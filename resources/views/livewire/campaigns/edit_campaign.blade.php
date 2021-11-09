@@ -1,6 +1,6 @@
 
 {{--<button class="btn btn-primary" wire:click="showUser({{ $model->id }})">Show</button>--}}
-<button data-toggle="modal" data-target="#campaignsupdateModal" wire:click="edit({{ $model->id }})"
+<button data-toggle="modal" data-target="#campaignsupdateModal" wire:click="edit({{ $model->campaign_id }})"
         class="btn btn-info">
     <i class="fa fa-edit"></i>
     Edit
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput2">Language Name </label>
-                        <input type="text" class="form-control" wire:model="language_name" id="exampleFormControlInput2" placeholder="Enter Email">
+                        <input type="text" class="form-control" wire:model="language_name" id="exampleFormControlInput2" placeholder="Enter Language">
                         @error('language_name') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </form>

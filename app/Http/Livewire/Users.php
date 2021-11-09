@@ -15,6 +15,7 @@ class Users extends Component
     public $updateMode = false;
     public $userIdBeingRemoved = null;
 
+
     //protected $listeners = ['deleteUser' => 'delete'];
 
     public function render()
