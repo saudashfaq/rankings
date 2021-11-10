@@ -30,25 +30,61 @@
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-                        <div>
-                            <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                        <div class="input-group mb-3">
+{{--                            <x-jet-label for="name" value="{{ __('Name') }}" />--}}
+                            <x-jet-input id="name" class="form-control" type="text" name="name" :value="old('name')"  placeholder="Enter Name" required autofocus autocomplete="name" />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mt-2">
-                            <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                        <div class="input-group mb-3">
+{{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}
+                            <x-jet-input id="email" class="form-control" placeholder="Enter Email" type="email" name="email" :value="old('email')" required />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="mt-2">
-                            <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                        <div class="input-group mb-0">
+{{--                            <x-jet-label for="password" value="{{ __('Password') }}" />--}}
+                            <x-jet-input id="password" class="form-control" type="password" placeholder="Enter Password"   name="password" required autocomplete="new-password" />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
                             <p style="color:red;">Valid password should be Minimum 8 character's long and should have one special character.</p>
                         </div>
+                        <div class="input-group mb-3">
+{{--                            <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />--}}
+                            <x-jet-input id="password_confirmation" class="form-control" placeholder="Enter New Password" type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="mt-2">
-                            <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                            <x-jet-input id="password_confirmation" class="block mt-0 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                        <div class="row">
+                            <div class="col-7">
+                                <div class="flex items-center justify-end mt-2">
+                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                        {{ __('Already registered?') }}
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-5">
+                                <x-jet-button class="bg-primary ml-4">
+                                    {{ __('Register') }}
+                                </x-jet-button>
+                            </div>
+                            <!-- /.col -->
                         </div>
 
                         @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -68,15 +104,7 @@
                             </div>
                         @endif
 
-                        <div class="flex items-center justify-end mt-4">
-                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                {{ __('Already registered?') }}
-                            </a>
 
-                            <x-jet-button class="bg-primary ml-4">
-                                {{ __('Register') }}
-                            </x-jet-button>
-                        </div>
 
                     </form>
 

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Events\SendInvitationMail;
 use App\Mail\SendMail;
 use App\Models\User;
+use App\Models\User_accounts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -64,6 +65,7 @@ class UserController extends Controller
         //URL would have user id ok
 
     }
+
 
     public function showAcceptInvitationFormToTeamMember(Request $request) {
 
