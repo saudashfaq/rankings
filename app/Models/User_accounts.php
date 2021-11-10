@@ -18,7 +18,10 @@ class User_accounts extends Model
 
     protected $table ='user_accounts';
     protected $fillable = [
+        'business_name',
         'email',
+        'logo',
+        'status',
 
 
 

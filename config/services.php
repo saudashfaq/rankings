@@ -31,13 +31,13 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => 'App id goes here',
-        'client_secret' => 'Secret goes herre',
+        'client_id' => '290326302945593',
+        'client_secret' => '0750dc93339dd8c461b9e5e938e59060',
         'redirect' => 'http://localhost:8000/auth/facebook/callback',
     ],
     'google' => [
-        'client_id' => 'app id',
-        'client_secret' => 'add secret',
+        'client_id' => '4735115272-fpflt2fn4g8spaed5uhofhmqa11hqjai.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
 
