@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,8 @@
     <title>Register</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
@@ -23,103 +23,118 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
+            <p class="login-box-msg">Register a New Membership</p>
 
             <x-guest-layout>
 
-                    <x-jet-validation-errors class="mb-4" />
+                <x-jet-validation-errors class="mb-4"/>
 
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="input-group mb-3">
-{{--                            <x-jet-label for="name" value="{{ __('Name') }}" />--}}
-                            <x-jet-input id="name" class="form-control" type="text" name="name" :value="old('name')"  placeholder="Enter Name" required autofocus autocomplete="name" />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-user"></span>
-                                </div>
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="input-group mb-3">
+                        {{--                            <x-jet-label for="name" value="{{ __('Name') }}" />--}}
+                        <x-jet-input id="name" class="form-control" type="text" name="name" :value="old('name')"
+                                     placeholder="Enter Name" required autofocus autocomplete="name"/>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="input-group mb-3">
-{{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}
-                            <x-jet-input id="email" class="form-control" placeholder="Enter Email" type="email" name="email" :value="old('email')" required />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
+                    <div class="input-group mb-3">
+                        {{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}
+                        <x-jet-input id="email" class="form-control" placeholder="Enter Email" type="email" name="email"
+                                     :value="old('email')" required/>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="input-group mb-0">
-{{--                            <x-jet-label for="password" value="{{ __('Password') }}" />--}}
-                            <x-jet-input id="password" class="form-control" type="password" placeholder="Enter Password"   name="password" required autocomplete="new-password" />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
-                            <p style="color:red;">Valid password should be Minimum 8 character's long and should have one special character.</p>
-                        </div>
-                        <div class="input-group mb-3">
-{{--                            <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />--}}
-                            <x-jet-input id="password_confirmation" class="form-control" placeholder="Enter New Password" type="password" name="password_confirmation" required autocomplete="new-password" />
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
+                    <div class="input-group mb-3">
+                        {{--                            <x-jet-label for="password" value="{{ __('Password') }}" />--}}
+                        <x-jet-input id="password" class="form-control" type="password"
+                                     placeholder="Enter Your Password" name="password" required
+                                     autocomplete="new-password"/>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-7">
-                                <div class="flex items-center justify-end mt-2">
-                                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                        {{ __('Already registered?') }}
-                                    </a>
-                                </div>
+                        {{--                           <p style="color:red;">Valid password should be Minimum 8 character's long and should have one special character.</p>--}}
+                    </div>
+                    <div class="input-group mb-3">
+                        {{--                            <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />--}}
+                        <x-jet-input id="password_confirmation" class="form-control"
+                                     placeholder="Enter confirm Password" type="password" name="password_confirmation"
+                                     required autocomplete="new-password"/>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
                             </div>
-                            <!-- /.col -->
-                            <div class="col-5">
-                                <x-jet-button class="bg-primary ml-4">
-                                    {{ __('Register') }}
-                                </x-jet-button>
-                            </div>
-                            <!-- /.col -->
                         </div>
+                    </div>
 
-                        @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                            <div class="mt-3">
-                                <x-jet-label for="terms">
-                                    <div class="flex items-center">
-                                        <x-jet-checkbox name="terms" id="terms"/>
+                    <div class="row">
+                        <div class="col-8">
 
-                                        <div class="ml-2">
-                                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                                    'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                                    'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                            ]) !!}
-                                        </div>
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <label for="agreeTerms">
+                                    I agree to the <a href="#">terms</a>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                                            <x-jet-button class="btn btn-primary btn-block">
+                                                {{ __('Register') }}
+                                            </x-jet-button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        <div class="mt-3">
+                            <x-jet-label for="terms">
+                                <div class="flex items-center">
+                                    <x-jet-checkbox name="terms" id="terms"/>
+
+                                    <div class="ml-2">
+                                        {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                        ]) !!}
                                     </div>
-                                </x-jet-label>
-                            </div>
-                        @endif
+                                </div>
+                            </x-jet-label>
+                        </div>
+                    @endif
 
 
-
-                    </form>
+                </form>
 
             </x-guest-layout>
 
 
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
+                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">
                     <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
                 </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
+                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google
+                </a>
+
+            </div>
+            <div class="flex items-center justify-end mt-10">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
                 </a>
             </div>
+
             <!-- /.social-auth-links -->
 
         </div>
@@ -138,7 +153,6 @@
 </html>
 
 {{--<x-guest-layout>--}}
-
 
 
 {{--        <x-jet-validation-errors class="mb-4" />--}}
