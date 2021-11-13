@@ -12,6 +12,7 @@
 
 @endsection
 
+
 @section('section-title', 'Rankings')
 
 @section('content')
@@ -135,22 +136,20 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+
                                         <tr>
-                                            @foreach(\App\Models\Keyword::all() as $keword)
-                                                <td>{{$keword->keyword}}</td>
-                                            @endforeach
+                                            @foreach($keyword as $keword)
+                                            <td>{{$keword->keyword}}</td>
                                             <td>us</td>
-                                            <td>2
-                                                {{--                                            <div class="progress progress-xs">--}}
-                                                {{--                                                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>--}}
-                                                {{--                                            </div>--}}
-                                            </td>
+                                            <td>2</td>
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
+                                            @endforeach
+
                                         </tr>
 
                                         </tbody>

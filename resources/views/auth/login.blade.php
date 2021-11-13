@@ -26,10 +26,10 @@
             <p class="login-box-msg">Login in to start your session</p>
 
             <x-guest-layout>
-                <x-jet-validation-errors class="mb-4"/>
+                <x-jet-validation-errors class="mb-2"/>
 
                 @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
+                    <div class="form-control red">
                         {{ session('status') }}
                     </div>
                 @endif
@@ -89,17 +89,17 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
-                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
+{{--                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">--}}
+{{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
+{{--                </a>--}}
                 <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> Sign in using Google
                 </a>
             </div>
             <!-- /.social-auth-links -->
-            <p class="mb-1">
+            <p class="mb-0">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                    <a class="text-center"
                        href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>

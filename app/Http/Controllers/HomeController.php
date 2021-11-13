@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campaign;
+use App\Models\Keyword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -10,6 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class HomeController extends Controller
 {
+    public $keyword;
     public function index()
     {
 //
@@ -30,10 +33,10 @@ class HomeController extends Controller
 //        $role =Role::findById(5);
 //        $role->givePermissionTo($permission);
 
+    $keyword=Keyword::get();
 
 
-
-        return view('admin.admin');
+        return view('admin.admin',compact('keyword'));
     }
     //
 }

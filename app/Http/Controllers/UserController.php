@@ -31,6 +31,7 @@ class UserController extends Controller
         return view('pages.teammemberinvitationform',['roles'=>$roles]);
     }
 
+
     public function createTeamMember(Request $request){
         {
 
@@ -40,15 +41,22 @@ class UserController extends Controller
                 'url' => [
                     'required|url',
                     'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
+
                 ],
 
             ]);
+
+            $user_account=User_accounts::where('id')->first();
+
+
             $name = $request->input('name');
             $email = $request->input('email');
+
 
             $user = new User();
             $user->name = $name;
             $user->email = $email;
+            $user->user_account_id=$user_account;
             $user->user_send_invitation='1';
             $user->save();
 

@@ -16,7 +16,14 @@ class Campaign extends Model
      * @var array
      */
 
-    protected $primaryKey = 'campaign_id';
+    public function campaigns(){
+
+        return $this->belongsTo(User_accounts::class, 'user_account_id', 'campaign_id');
+
+    }
+
+
+//    protected $primaryKey = 'campaign_id';
     protected $table ='campaigns';
     protected $fillable = [
         'campaign_name',
@@ -33,9 +40,6 @@ class Campaign extends Model
         'rank_check_due_time',
         'rank_check_frequncy',
         'user_account_id',
-
-
-
 
     ];
 
