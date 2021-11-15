@@ -31,10 +31,6 @@ class UserTable extends TableComponent
 
     public function createTeamMember(Request $request){
         {
-
-
-
-
             $this->validate($request, [
                 'name'     =>  'required',
                 'email'  =>  'required|email',
@@ -50,7 +46,7 @@ class UserTable extends TableComponent
             $user = new User();
             $user->name = $name;
             $user->email = $email;
-            $user->user_account_id='';
+            $user->user_account_id=auth()->user()->id;
             $user->user_send_invitation='1';
             $user->save();
 

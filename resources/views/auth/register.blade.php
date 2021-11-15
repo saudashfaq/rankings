@@ -43,7 +43,7 @@
                     </div>
 
 
-                    <input type="text" value="{{\App\Models\User_accounts::first('id')}}">
+
 
                     <div class="input-group mb-3">
                         {{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}

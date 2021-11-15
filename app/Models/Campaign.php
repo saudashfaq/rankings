@@ -22,10 +22,16 @@ class Campaign extends Model
 
     }
 
+    public function keyword(){
+        return $this->hasMany(Keyword::class);
+    }
 
-//    protected $primaryKey = 'campaign_id';
+
+   protected $primaryKey = 'campaign_id';
     protected $table ='campaigns';
     protected $fillable = [
+
+
         'campaign_name',
         'language_name',
      'location_name',

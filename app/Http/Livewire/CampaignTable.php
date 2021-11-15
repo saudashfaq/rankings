@@ -72,7 +72,7 @@ class CampaignTable extends TableComponent
 
         ]);
 
-       $campaigns= Campaign::create([
+       $this->campaign = Campaign::create([
            'user_id'=> auth()->user()->id,
            'campaign_name' => $this->campaign_name,
             'language_name' => $this->language_name,
@@ -126,13 +126,13 @@ class CampaignTable extends TableComponent
         ]);
 
         if ($this->campaign_id) {
-            $campaign = Campaign::find($this-> campaign_id);
+            $campaign = Campaign::find($this->campaign_id);
             $campaign->update([
                 'campaign_name' => $this->campaign_name,
                 'language_name' => $this->language_name,
             ]);
             $this->updateMode = false;
-            session()->flash('message', 'campaign Updated Successfully.');
+            session()->flash('message', 'Campaign Updated Successfully.');
             $this->resetInputFields();
 
         }
@@ -141,6 +141,8 @@ class CampaignTable extends TableComponent
 
     public function addKeywords()
     {
+
+//        dd($this->campaign->campaign_id);
 
         //dd($this->keywords);
         $this->validate([
@@ -152,8 +154,7 @@ class CampaignTable extends TableComponent
 
            'keyword' => $this->keywords,
            'user_account_id'=>auth()->user()->user_account_id,
-           'campaign_id'=> 1 ,
-
+           'campaign_id'=> $this->campaign->campaign_id,
 
        ]);
 
