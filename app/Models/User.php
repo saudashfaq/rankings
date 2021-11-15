@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->belongsTo(User_accounts::class, 'id', 'id');
 
     }
+//    public function useraccounts(){
+//
+//        return $this->belongsTo(User_accounts::class, 'campaign_id' ,'keyword_id');
+//
+//    }
 
     public $guard_name = 'web';
     protected $table = 'users';

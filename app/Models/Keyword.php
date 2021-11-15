@@ -17,8 +17,7 @@ class Keyword extends Model
 
 
 
-
-
+    protected $primaryKey = 'keyword_id';
     protected $table ='keywords';
     protected $fillable = [
         'keyword',
@@ -65,7 +64,7 @@ class Keyword extends Model
 
     public function campaigns(){
 
-        return $this->belongsTo(Keyword::class, 'campaign_id' ,'keyword_id');
+        return $this->belongsTo(Campaign::class, 'campaign_id' ,'keyword_id');
 
     }
 

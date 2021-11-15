@@ -56,7 +56,7 @@ class UserController extends Controller
             $user = new User();
             $user->name = $name;
             $user->email = $email;
-            $user->user_account_id=$user_account;
+            $user->user_account_id=auth()->user()->id;
             $user->user_send_invitation='1';
             $user->save();
 

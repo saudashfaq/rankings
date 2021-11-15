@@ -152,7 +152,7 @@ class CampaignTable extends TableComponent
                 'language_name' => $this->language_name,
             ]);
             $this->updateMode = false;
-            session()->flash('message', 'campaign Updated Successfully.');
+            session()->flash('message', 'Campaign Updated Successfully.');
             $this->resetInputFields();
 
         }
@@ -161,6 +161,8 @@ class CampaignTable extends TableComponent
 
     public function addKeywords()
     {
+
+//        dd($this->campaign->campaign_id);
 
         //dd($this->keywords);
         $this->validate([

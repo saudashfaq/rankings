@@ -148,9 +148,10 @@
                                             <td>1</td>
                                             <td>1</td>
                                             <td>1</td>
-                                            @endforeach
+
 
                                         </tr>
+                                        @endforeach
 
                                         </tbody>
                                     </table>
