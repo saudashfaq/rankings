@@ -15,6 +15,11 @@ class User_accounts extends Model
      *
      * @var array
      */
+  public function users(){
+
+      return $this->hasMany(User::class, 'user_account_id', 'id');
+
+  }
 
     protected $table ='user_accounts';
     protected $fillable = [

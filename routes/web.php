@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/edits', function () {
 })->name('dashboard');
 
 //main controller
-Route::get('redirects', 'App\Http\Controllers\HomeController@index');
+Route::get('dashboard', [\App\Http\Controllers\HomeController::class, 'index']);
 
 //for create compaigns
 Route::get('campaigns', [\App\Http\Controllers\CampaignsController::class, 'index']);
@@ -58,9 +58,9 @@ Route::get('auth/google', [\App\Http\Controllers\loginController::class, 'redire
 
 Route::get('auth/google/callback', [\App\Http\Controllers\loginController::class, 'signinGoogle']);
 
-Route::get('auth/facebook', [\App\Http\Controllers\loginController::class, 'redirectToFacebook']);
-
-Route::get('auth/facebook/callback', [\App\Http\Controllers\loginController::class, 'signinFacebook']);
+//Route::get('auth/facebook', [\App\Http\Controllers\loginController::class, 'redirectToFacebook']);
+//
+//Route::get('auth/facebook/callback', [\App\Http\Controllers\loginController::class, 'signinFacebook']);
 
 
 ////change status for activiation

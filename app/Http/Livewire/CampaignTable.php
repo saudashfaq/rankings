@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
+use App\Models\User_accounts;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 
@@ -42,11 +43,12 @@ class CampaignTable extends TableComponent
  public $header_view = 'campaigns.campaigns-table-header';
 
     public $Campaign;
+    public $campaign;
 
     public function query()
     {
 
-        return Campaign::query();
+        return Campaign::query()->where('user_id', auth()->user()->id);
 
     }
 
@@ -55,6 +57,8 @@ class CampaignTable extends TableComponent
         $this->campaign_name = null;
         $this->language_code = null;
     }
+
+
     public function store()
     {
 
@@ -67,7 +71,8 @@ class CampaignTable extends TableComponent
             'search_term'=>'required',
 
         ]);
-       Campaign::create([
+
+       $campaigns= Campaign::create([
            'user_id'=> auth()->user()->id,
            'campaign_name' => $this->campaign_name,
             'language_name' => $this->language_name,
@@ -81,7 +86,7 @@ class CampaignTable extends TableComponent
            'country_iso_code'=>0,
            'rank_check_due_time'=>2,
 //           'rank_check_frequncy'=>1,
-           'user_account_id'=>1,
+           'user_account_id'=> auth()->user()->user_account_id,
 
 
        ]);
@@ -91,6 +96,7 @@ class CampaignTable extends TableComponent
 
         //$this->resetInput();
     }
+
     private function resetInputFields(){
         $this->campaign_name = '';
         $this->language_name = '';
@@ -109,8 +115,6 @@ class CampaignTable extends TableComponent
     {
         $this->updateMode = false;
         $this->resetInputFields();
-
-
     }
 
     public function update()
@@ -147,8 +151,8 @@ class CampaignTable extends TableComponent
        Keyword::create([
 
            'keyword' => $this->keywords,
-           'user_account_id'=>auth()->user()->id,
-           'campaign_id'=> 1,
+           'user_account_id'=>auth()->user()->user_account_id,
+           'campaign_id'=> 1 ,
 
 
        ]);

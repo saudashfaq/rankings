@@ -27,7 +27,7 @@
 
             <x-guest-layout>
 
-                <x-jet-validation-errors class="mb-4"/>
+{{--                <x-jet-validation-errors class="mb-4"/>--}}
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -42,27 +42,33 @@
                         </div>
                     </div>
 
+
+                    <input type="text" value="{{\App\Models\User_accounts::first('id')}}">
+
                     <div class="input-group mb-3">
                         {{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}
-                        <x-jet-input id="email" class="form-control" placeholder="Enter Email" type="email" name="email"
+                        <x-jet-input id="email" class="form-control" placeholder="Enter Your Email" type="email" name="email"
                                      :value="old('email')" required/>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
+
                     </div>
+                    <span class="text-danger">@error('email'){{ $message }}@enderror</span>
 
                     <div class="input-group mb-3">
                         {{--                            <x-jet-label for="password" value="{{ __('Password') }}" />--}}
                         <x-jet-input id="password" class="form-control" type="password"
-                                     placeholder="Enter Your Password" name="password" required
+                                     placeholder="Enter Password,one special character" name="password" required
                                      autocomplete="new-password"/>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
+                        <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                         {{--                           <p style="color:red;">Valid password should be Minimum 8 character's long and should have one special character.</p>--}}
                     </div>
                     <div class="input-group mb-3">
@@ -75,6 +81,8 @@
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
+                        <span class="text-danger">@error('password'){{ $message }}@enderror</span>
+
                     </div>
 
                     <div class="row">
@@ -121,16 +129,16 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
-                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
+{{--                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">--}}
+{{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
+{{--                </a>--}}
                 <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> Sign in using Google
                 </a>
 
             </div>
             <div class="flex items-center justify-end mt-10">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="text-center" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
             </div>
