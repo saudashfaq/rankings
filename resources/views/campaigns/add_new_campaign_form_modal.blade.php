@@ -47,7 +47,7 @@
                                                             <label for="">Campaign Title</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Your campaign name"
-                                                                   wire:model="campaign_name">
+                                                                   wire:model.defer="campaign_name">
 
                                                             <span
                                                                 class="text-danger">@error('campaign_name'){{ $message }}@enderror</span>
@@ -58,7 +58,7 @@
                                                             <label for="">Website Address</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Website Address"
-                                                                   wire:model="url">
+                                                                   wire:model.defer="url">
                                                             <span
                                                                 class="text-danger">@error('url'){{ $message }}@enderror</span>
                                                         </div>
@@ -67,40 +67,27 @@
 
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="">Location</label>
-                                                            {{--                                                            <select  wire:model="search_term"  wire:keydown.debounce.500ms="readCsv()" class="form-control"  >--}}
-                                                            {{--                                                                @if($location)--}}
-                                                            {{--                                                                @foreach($location as $loc)--}}
-                                                            {{--                                                                    <option value="{{$loc}}">{{$loc}}</option>--}}
-                                                            {{--                                                                @endforeach--}}
-                                                            {{--                                                                @endif--}}
-                                                            {{--                                                            </select>--}}
 
+                                                        @livewire('campaigns.form.countries')
 
-                                                            <input type="text" name="location_name" wire:model="search_term"
-                                                                   wire:keydown.debounce.500ms="readCsv()"
-                                                                   placeholder="Enter Your Location"
-                                                                   class="form-control" list="location">
-                                                            <datalist id="location">
-                                                                @if($location)
-                                                                    @foreach($location as $loc)
-                                                                        <option value="{{$loc}}">{{$loc}}</option>
-                                                                    @endforeach
-                                                                @endif
-                                                            </datalist>
-
-                                                            <span
-                                                                class="text-danger">@error('location'){{ $message }}@enderror</span>
-                                                        </div>
                                                     </div>
+
+
+                                                    <div class="col-md-6">
+
+                                                        @livewire('campaigns.form.locations')
+
+                                                    </div>
+
+
+
 
                                                     {{--                                                    <input type="text" name="language_code" value="abc" wire:model="language_code">--}}
                                                     <div class="col-md-6">
                                                         <div class="form-group">
 
                                                             <label for="">Group</label>
-                                                            <select class="form-control" wire:model="group">
+                                                            <select class="form-control" wire:model.defer="group">
                                                                 <option value="" selected>Select Group</option>
                                                                 <option value="Sample1">Sample1</option>
                                                                 <option value="Sample2">Sample2</option>
@@ -113,7 +100,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="">Language</label>
-                                                            <select class="form-control" wire:model="language_name">
+                                                            <select class="form-control" wire:model.defer="language">
                                                                 <option value="">Select</option>
                                                                 <option value="English">English</option>
                                                                 <option value="Urdu">Urdu</option>
@@ -128,7 +115,7 @@
                                                             <label for=""> Report Delivery Time zone</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Report Delivery Time zone "
-                                                                   wire:model="report_delivery">
+                                                                   wire:model.defer="time_zone">
                                                             <span
                                                                 class="text-danger">@error('report_delivery'){{ $message }}@enderror</span>
                                                         </div>
@@ -211,18 +198,6 @@
 
                                 <div class="action-buttons d-flex justify-content-between bg-white pt-2 pb-2">
 
-                                    @if ($currentStep == 1)
-                                        {{--                                        <button type="button" class="btn btn-md btn-success"--}}
-                                        {{--                                                wire:click="store()" > save--}}
-                                        {{--                                        </button>--}}
-                                    @endif
-
-                                    @if ($currentStep == 2 )
-                                        <button type="button" class="btn btn-md btn-secondary"
-                                                wire:click="decreaseStep()">Back
-                                        </button>
-                                    @endif
-
                                     @if ($currentStep == 1 )
                                         <button type="button" style="margin-left: 650px" class="btn btn-md btn-success"
                                                 wire:click="store()">Next
@@ -231,6 +206,14 @@
                                         {{--                                                   wire:click="{{$currentStep == 2 ? 'addKeyword()':'store()'}}" >Next--}}
                                         {{--                                            </button>--}}
                                     @endif
+
+
+                                @if ($currentStep == 2 )
+                                        <button type="button" class="btn btn-md btn-secondary"
+                                                wire:click="decreaseStep()">Back
+                                        </button>
+                                    @endif
+
 
                                     @if ($currentStep == 2 )
 
