@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User_accounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -26,8 +27,15 @@ class loginController extends Controller
 
             if ($findUser) {
                 Auth::login($findUser);
-                return redirect()->intended('/redirects');
+                return redirect()->intended('dashboard');
             } else {
+
+//                User_accounts::create([
+//                    'business_name'=>'a',
+//                    'email' =>$user->email,
+//                    'logo' => 'a',
+//                    'status' => 1,
+//                ]);
                 $addUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
@@ -36,7 +44,7 @@ class loginController extends Controller
                 ]);
 
                 Auth::login($addUser);
-                return redirect()->intended('/redirects');
+                return redirect()->intended('dashboard');
             }
 
         } catch (\Exception $exception) {
@@ -44,34 +52,36 @@ class loginController extends Controller
         }
     }
 
-    public function redirectToFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
 
-    public function signinFacebook()
-    {
-        try {
-            $user = Socialite::driver('facebook')->user();
-            $findUser = User::where('facebook_id', $user->id)->first();
-
-            if ($findUser) {
-                Auth::login($findUser);
-                return redirect('/redirects');
-            } else {
-                $addUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'facebook_id' => $user->id,
-                    'password' => encrypt('mypasswords')
-                ]);
-
-                Auth::login($addUser);
-                return redirect('/redirects');
-            }
-
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-    }
+//    //for facebook
+//    public function redirectToFacebook()
+//    {
+//        return Socialite::driver('facebook')->redirect();
+//    }
+//
+//    public function signinFacebook()
+//    {
+//        try {
+//            $user = Socialite::driver('facebook')->user();
+//            $findUser = User::where('facebook_id', $user->id)->first();
+//
+//            if ($findUser) {
+//                Auth::login($findUser);
+//                return redirect('/redirects');
+//            } else {
+//                $addUser = User::create([
+//                    'name' => $user->name,
+//                    'email' => $user->email,
+//                    'facebook_id' => $user->id,
+//                    'password' => encrypt('mypasswords')
+//                ]);
+//
+//                Auth::login($addUser);
+//                return redirect('/redirects');
+//            }
+//
+//        } catch (\Exception $e) {
+//            dd($e->getMessage());
+//        }
+//    }
 }

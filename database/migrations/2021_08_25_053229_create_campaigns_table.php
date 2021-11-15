@@ -20,7 +20,7 @@ class CreateCampaignsTable extends Migration
             $table->string('time_zone',45)->default('UTC');
             $table->string('language_name' ,100)->default('en')->comment('full name of language maximum 20 characters. Verify if any language has count characters greater than 20 limit.');
             $table->string('language_code',20)->comment('like ‘en’ for English');
-//            $table->string('location_name')->comment('Full name of location including state, province, country and area etc.');
+//           $table->string('location_name')->comment('Full name of location including state, province, country and area etc.');
             $table->string('location_name')->comment('Full name of location including state, province, country and area etc.');
             $table->integer('location_code');
            $table->string('country_iso_code',5)->comment('3 characters country code');

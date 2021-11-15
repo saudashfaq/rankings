@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
+use App\Models\User_accounts;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 use App\Dataforseo\RestClient;
@@ -43,6 +44,7 @@ class CampaignTable extends TableComponent
     public $header_view = 'campaigns.campaigns-table-header';
 
     public $Campaign;
+    public $campaign;
 
 
     /**
@@ -58,7 +60,7 @@ class CampaignTable extends TableComponent
     public function query()
     {
 
-        return Campaign::query();
+        return Campaign::query()->where('user_id', auth()->user()->id);
 
     }
 
@@ -74,6 +76,7 @@ class CampaignTable extends TableComponent
         $this->language_code = null;
     }
 
+
     public function store()
     {
 
@@ -85,7 +88,6 @@ class CampaignTable extends TableComponent
             'time_zone' => 'required',
 
         ]);
-        //dd($this);
 
         Campaign::create([
             'user_id' => auth()->user()->id,
@@ -104,6 +106,7 @@ class CampaignTable extends TableComponent
             'user_account_id' => auth()->user()->user_account_id,
 
 
+
         ]);
 
         $this->language_code = 'abc';
@@ -112,8 +115,8 @@ class CampaignTable extends TableComponent
         //$this->resetInput();
     }
 
-    private function resetInputFields()
-    {
+    private function resetInputFields(){
+
         $this->campaign_name = '';
         $this->language_name = '';
     }
@@ -132,8 +135,6 @@ class CampaignTable extends TableComponent
     {
         $this->updateMode = false;
         $this->resetInputFields();
-
-
     }
 
     public function update()
@@ -169,10 +170,9 @@ class CampaignTable extends TableComponent
 
         Keyword::create([
 
-            'keyword' => $this->keywords,
-            'user_account_id' => auth()->user()->id,
-            'campaign_id' => 1,
-
+           'keyword' => $this->keywords,
+           'user_account_id'=>auth()->user()->user_account_id,
+           'campaign_id'=> 1 ,
 
         ]);
 
@@ -185,10 +185,6 @@ class CampaignTable extends TableComponent
     {
         $this->currentStep = 1;
     }
-
-
-
-
 
 
     public function updatedLocation() {

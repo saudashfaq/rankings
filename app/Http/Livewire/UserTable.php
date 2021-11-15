@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Events\SendInvitationMail;
 use App\Models\User;
+use App\Models\User_accounts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -24,12 +25,15 @@ class UserTable extends TableComponent
 
     public function query()
     {
-        return User::query();
+        return User::query()->where('user_account_id', auth()->user()->user_account_id);
     }
 
 
     public function createTeamMember(Request $request){
         {
+
+
+
 
             $this->validate($request, [
                 'name'     =>  'required',
@@ -46,6 +50,7 @@ class UserTable extends TableComponent
             $user = new User();
             $user->name = $name;
             $user->email = $email;
+            $user->user_account_id='';
             $user->user_send_invitation='1';
             $user->save();
 

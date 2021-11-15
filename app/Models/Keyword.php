@@ -15,6 +15,10 @@ class Keyword extends Model
      * @var array
      */
 
+
+
+
+
     protected $table ='keywords';
     protected $fillable = [
         'keyword',
@@ -51,6 +55,19 @@ class Keyword extends Model
 
 
     ];
+
+
+    public function userAccount(){
+
+        return $this->belongsTo(User_accounts::class, 'user_account_id' ,'id');
+
+    }
+
+    public function campaigns(){
+
+        return $this->belongsTo(Keyword::class, 'campaign_id' ,'keyword_id');
+
+    }
 
 
 }

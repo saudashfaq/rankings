@@ -27,12 +27,20 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public function user(){
+
+        return $this->belongsTo(User_accounts::class, 'id', 'id');
+
+    }
+
     public $guard_name = 'web';
     protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
         'password',
+        'user_account_id',
       'user_send_invitation'
 
 
