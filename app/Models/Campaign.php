@@ -16,29 +16,31 @@ class Campaign extends Model
      * @var array
      */
 
-    public function campaigns(){
+    public function campaigns()
+    {
 
         return $this->belongsTo(User_accounts::class, 'user_account_id', 'campaign_id');
 
     }
 
-    public function keyword(){
+    public function keyword()
+    {
         return $this->hasMany(Keyword::class);
     }
 
 
-   protected $primaryKey = 'campaign_id';
-    protected $table ='campaigns';
+    protected $primaryKey = 'campaign_id';
+    protected $table = 'campaigns';
     protected $fillable = [
 
 
         'campaign_name',
         'language_name',
-     'location_name',
-       //'search_term',
+        'location_name',
+        //'search_term',
         'url',
         'user_id',
-     'status',
+        'status',
         'location_code',
         'language_code',
         'campaign_logo',
@@ -67,7 +69,7 @@ class Campaign extends Model
      * @var array
      */
     protected $casts = [
-       // 'email_verified_at' => 'datetime',
+        // 'email_verified_at' => 'datetime',
     ];
 
     /**

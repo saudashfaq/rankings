@@ -42,9 +42,10 @@ class CampaignTable extends TableComponent
     public $checkbox = true;
     public $checkbox_attribute = 'campaign_id';
     public $header_view = 'campaigns.campaigns-table-header';
-
+    public $country;
     public $Campaign;
     public $campaign;
+    public $language_name;
 
 
     /**
@@ -52,7 +53,6 @@ class CampaignTable extends TableComponent
      * when start writing in the location field it should filter from locations
      * and show in the data list
      */
-
 
 
     protected $listeners = ['locationUpdated'];
@@ -65,9 +65,9 @@ class CampaignTable extends TableComponent
     }
 
     //listener
-    public function locationUpdated($location)
+    public function locationUpdated($event)
     {
-        $this->location = $location;
+        $this->location = $event[0];
     }
 
     private function resetInput()
@@ -85,11 +85,12 @@ class CampaignTable extends TableComponent
             'url' => 'required',
             'location' => 'required',
             'language' => 'required',
-            'time_zone' => 'required',
+
 
         ]);
+        //dd($this->location);
 
-        Campaign::create([
+        $this->campaign = Campaign::create([
             'user_id' => auth()->user()->id,
             'campaign_name' => $this->campaign_name,
             'language_name' => $this->language,
@@ -102,9 +103,8 @@ class CampaignTable extends TableComponent
             'campaign_logo' => 'ab',
             'country_iso_code' => $this->location['country_iso_code'],
             'rank_check_due_time' => "00:00:01",
-//           'rank_check_frequncy'=>1,
+            'rank_check_frequncy'=>1,
             'user_account_id' => auth()->user()->user_account_id,
-
 
 
         ]);
@@ -115,7 +115,8 @@ class CampaignTable extends TableComponent
         //$this->resetInput();
     }
 
-    private function resetInputFields(){
+    private function resetInputFields()
+    {
 
         $this->campaign_name = '';
         $this->language_name = '';
@@ -172,9 +173,9 @@ class CampaignTable extends TableComponent
 
         Keyword::create([
 
-           'keyword' => $this->keywords,
-           'user_account_id'=>auth()->user()->user_account_id,
-           'campaign_id'=> 1 ,
+            'keyword' => $this->keywords,
+            'user_account_id' => auth()->user()->user_account_id,
+            'campaign_id' => $this->campaign->campaign_id,
 
         ]);
 
@@ -189,14 +190,15 @@ class CampaignTable extends TableComponent
     }
 
 
-    public function updatedLocation() {
+    public function updatedLocation()
+    {
 
         dd($this->location);
         //$row = 1;
         $res = [];
         $this->country;
 
-        $this->locations =  $this->getLocations();
+        $this->locations = $this->getLocations();
 
         dd($this->locations);
 
@@ -204,11 +206,10 @@ class CampaignTable extends TableComponent
     }
 
 
-
     public function getLocations()
     {
 
-        if( !empty($this->country)) {
+        if (!empty($this->country)) {
 
             try {
                 //Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-dashboard
@@ -232,7 +233,7 @@ class CampaignTable extends TableComponent
                 $country = 'AT';//TODO: uncomment $this->country;
                 $results = $client->get("/v3/serp/google/locations/$country");
                 //dd($results['tasks'][0]['result']);
-                if( !empty($results) && !empty($results['tasks'][0]['result'])) {
+                if (!empty($results) && !empty($results['tasks'][0]['result'])) {
 
                     $this->locations = $results['tasks'][0]['result'];
                 }
@@ -257,10 +258,6 @@ class CampaignTable extends TableComponent
     }
 
 
-
-
-
-
     public function increaseStep()
     {
         $this->resetErrorBag();
@@ -281,8 +278,7 @@ class CampaignTable extends TableComponent
         }
     }
 
-    public
-    function validateData()
+    public function validateData()
     {
 
         if ($this->currentStep == 1) {
@@ -291,8 +287,8 @@ class CampaignTable extends TableComponent
                 'url' => 'required|string',
                 'location' => 'required',
                 'group' => 'required',
-                'language_name' => 'required',
-                'report_delivery' => 'required',
+                'language' => 'required',
+
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
