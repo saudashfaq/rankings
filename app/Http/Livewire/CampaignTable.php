@@ -64,6 +64,7 @@ class CampaignTable extends TableComponent
 
     }
 
+
     //listener
     public function locationUpdated($event)
     {
