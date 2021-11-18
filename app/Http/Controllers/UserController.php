@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Events\SendInvitationMail;
 use App\Mail\SendMail;
 use App\Models\User;
-use App\Models\User_accounts;
+use App\Models\UserAccount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -46,7 +46,7 @@ class UserController extends Controller
 
             ]);
 
-            $user_account=User_accounts::where('id')->first();
+            $user_account=UserAccount::where('id')->first();
 
 
             $name = $request->input('name');

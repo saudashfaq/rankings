@@ -19,13 +19,17 @@ class Campaign extends Model
     public function campaigns()
     {
 
-        return $this->belongsTo(User_accounts::class, 'user_account_id', 'campaign_id');
+        return $this->belongsTo(UserAccount::class, 'user_account_id', 'campaign_id');
 
     }
 
     public function keyword()
     {
         return $this->hasMany(Keyword::class);
+    }
+    public function keyword_ranking()
+    {
+        return $this->hasMany(KeywordRankings::class);
     }
 
 

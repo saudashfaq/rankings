@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Keyword extends Model
+class KeywordRankings extends Model
 {
     use HasFactory;
+
 
     /**
      * The attributes that are mass assignable.
@@ -16,12 +17,18 @@ class Keyword extends Model
      */
 
 
-    protected $primaryKey = 'keyword_id';
-    protected $table = 'keywords';
+//    public function keyword(){
+//
+//        return $this->belongsTo(Keyword::class, 'keywords_id' ,'id');
+//
+//    }
+
+    protected $table = 'keyword_rankings';
     protected $fillable = [
-        'keyword',
+        'keyword_id',
         'user_account_id',
         'campaign_id',
+
     ];
 
     /**
@@ -52,7 +59,6 @@ class Keyword extends Model
 
     ];
 
-
     public function userAccount()
     {
 
@@ -63,12 +69,16 @@ class Keyword extends Model
     public function campaigns()
     {
 
-        return $this->belongsTo(Campaign::class, 'campaign_id', 'keyword_id');
+        return $this->belongsTo(Campaign::class, 'campaign_id', 'id');
 
     }
-//    public function keyword_ranking()
-//    {
-//        return $this->hasMany(keywordRankings::class );
-//    }
+
+    public function keywordshow()
+    {
+
+        return $this->hasOne(Keyword::class, "keyword_id", "id");
+
+    }
+
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User_accounts;
+use App\Models\UserAccount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -30,7 +30,7 @@ class loginController extends Controller
                 return redirect()->intended('dashboard');
             } else {
 
-//                User_accounts::create([
+//                UserAccount::create([
 //                    'business_name'=>'a',
 //                    'email' =>$user->email,
 //                    'logo' => 'a',

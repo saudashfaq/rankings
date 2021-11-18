@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
+use App\Models\keywordRankings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -13,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 class HomeController extends Controller
 {
     public $keyword;
+
     public function index()
     {
 //
@@ -33,10 +35,20 @@ class HomeController extends Controller
 //        $role =Role::findById(5);
 //        $role->givePermissionTo($permission);
 
-    $keyword=Keyword::get();
+//    $keywords=Keyword::where('user_account_id', auth()->user()->id)->pluck('keyword');
+
+//    $keywords_ranking =keywordRankings::with('keywordshow')->where('id', auth()->user()->id)->get();
+
+//    $keywords_ranking =keywordRankings::with('keywordshow')->get();
 
 
-        return view('admin.admin',compact('keyword'));
+//    $keywords_ranking = KeywordRankings::with('keywordshow')->get();
+//    $keywords_ranking = $key->toArray();
+        //dd($key[0]->keywordshow);
+
+        $keywords_ranking = KeywordRankings::with('keywordshow')->get()->where('user_account_id', auth()->user()->user_account_id);
+
+        return view('admin.admin', compact('keywords_ranking'));
     }
     //
 }

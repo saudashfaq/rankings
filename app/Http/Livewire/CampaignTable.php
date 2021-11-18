@@ -4,7 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
-use App\Models\User_accounts;
+use App\Models\keywordRankings;
+use App\Models\UserAccount;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 use App\Dataforseo\RestClient;
@@ -172,12 +173,17 @@ class CampaignTable extends TableComponent
 
         ]);
 
-        Keyword::create([
+       $this->keyword = Keyword::create([
 
             'keyword' => $this->keywords,
             'user_account_id' => auth()->user()->user_account_id,
             'campaign_id' => $this->campaign->campaign_id,
 
+        ]);
+        keywordRankings::create([
+            'keyword_id' =>$this->keyword->keyword_id,
+            'user_account_id' => auth()->user()->user_account_id,
+            'campaign_id' => $this->keyword->campaign_id,
         ]);
 
         $this->increaseStep();
