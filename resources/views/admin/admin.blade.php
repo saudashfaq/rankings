@@ -33,7 +33,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="far fa-chart-bar"></i>
-                                Google Change
+                                Google Organic Change
                             </h3>
 
                             <div class="card-tools">
@@ -54,12 +54,15 @@
                     </div>
                     <!-- /.card -->
                     <div class="row">
+
                         <div class="col-lg-2 col-6">
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>45</h3>
-                                    <p>Google Rankings</p>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_organic_stats}}</h3>
+                                    @endforeach()
+                                    <p>Google Organic Change</p>
                                 </div>
                             </div>
                         </div>
@@ -68,8 +71,10 @@
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>35</h3>
-                                    <p>Google Change</p>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_organic_change}}</h3>
+                                    @endforeach()
+                                    <p>Google Organic Change</p>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +83,9 @@
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>75</h3>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_local_stats}}</h3>
+                                    @endforeach()
                                     <p>Google Local Rankings</p>
                                 </div>
                             </div>
@@ -88,7 +95,9 @@
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>25</h3>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_local_change}}</h3>
+                                    @endforeach()
                                     <p>Google Local Change</p>
                                 </div>
                             </div>
@@ -97,7 +106,9 @@
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>15</h3>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_mobile_stats}}</h3>
+                                    @endforeach()
                                     <p>Google Mobile Rankings</p>
                                 </div>
                             </div>
@@ -106,7 +117,9 @@
                             <!-- small box -->
                             <div class="small-box bg-light">
                                 <div class="inner">
-                                    <h3>65</h3>
+                                    @foreach($keywords_ranking as $keyword)
+                                        <h3>{{$keyword->google_mobile_change}}</h3>
+                                    @endforeach()
                                     <p>Google Mobile Change</p>
                                 </div>
                             </div>
@@ -126,11 +139,14 @@
                                         <tr>
                                             <th>Keyword</th>
                                             <th>Location</th>
-                                            <th>Google</th>
-                                            <th>Google Change</th>
+                                            <th>Google Organic</th>
+                                            <th>Google Organic Ranking</th>
+                                            <th>Google Organic Change</th>
                                             <th>Google url</th>
+                                            <th>Google Local</th>
                                             <th>Google local Ranking</th>
                                             <th>Google local change</th>
+                                            <th>Google Mobile</th>
                                             <th>Google Mobile Ranking</th>
                                             <th>Google Mobile change</th>
                                         </tr>
@@ -138,20 +154,23 @@
                                         <tbody>
 
                                         <tr>
-                                            @foreach($keyword as $keword)
-                                            <td>{{$keword->keyword}}</td>
-                                            <td>us</td>
-                                            <td>2</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-
-
+                                            @foreach($keywords_ranking as $keword)
+                                               <td>{{$keword->keywordshow->keyword}}</td>
+                                           <td>Static Location</td>
+                                                <td>{{$keword->google_organic}}</td>
+                                            <td>{{$keword->google_organic_stats}}</td>
+                                            <td>{{$keword->google_organic_change}}</td>
+                                                  <td>it is static </td>
+                                            <td>{{$keword->google_local}}</td>
+                                            <td>{{$keword->google_local_stats}}</td>
+                                            <td>{{$keword->google_local_change}}</td>
+                                            <td>{{$keword->google_mobile}}</td>
+                                            <td>{{$keword->google_mobile_stats}}</td>
+                                            <td>{{$keword->google_mobile_change}}</td>
                                         </tr>
+
                                         @endforeach
+
 
                                         </tbody>
                                     </table>

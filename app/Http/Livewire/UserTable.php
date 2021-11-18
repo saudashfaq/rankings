@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Events\SendInvitationMail;
 use App\Models\User;
-use App\Models\User_accounts;
+use App\Models\UserAccount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

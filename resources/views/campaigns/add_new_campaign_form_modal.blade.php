@@ -106,7 +106,7 @@
                                                                 <option value="Urdu">Urdu</option>
                                                             </select>
                                                             <span
-                                                                class="text-danger">@error('language_name'){{ $message }}@enderror</span>
+                                                                class="text-danger">@error('language'){{ $message }}@enderror</span>
                                                         </div>
 
                                                     </div>

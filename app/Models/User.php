@@ -30,12 +30,12 @@ class User extends Authenticatable
 
     public function user(){
 
-        return $this->belongsTo(User_accounts::class, 'id', 'id');
+        return $this->belongsTo(UserAccount::class, 'id', 'id');
 
     }
 //    public function useraccounts(){
 //
-//        return $this->belongsTo(User_accounts::class, 'campaign_id' ,'keyword_id');
+//        return $this->belongsTo(UserAccount::class, 'campaign_id' ,'keyword_id');
 //
 //    }
 
