@@ -25,6 +25,7 @@ class KeywordRankings extends Model
 
 
     protected $table = 'keyword_rankings';
+    protected $primaryKey ='id';
     protected $fillable = [
         'keyword_id',
         'user_account_id',
@@ -72,15 +73,15 @@ class KeywordRankings extends Model
     public function keywordshow()
     {
 
-        return $this->hasOne(Keyword::class, "keyword_id", "id");
+        return $this->hasOne(Keyword::class, "keyword_id", "keyword_id");
 
     }
-//    public function campaigns()
-//    {
-//
-//        return $this->hasOne(Campaign::class, "campaign_id", "id");
-//
-//    }
+    public function campaigns()
+    {
+
+        return $this->hasMany(Campaign::class, "campaign_id", "id");
+
+    }
 
 
 
