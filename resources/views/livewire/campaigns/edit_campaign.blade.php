@@ -20,7 +20,7 @@
                 <form>
                     <div class="form-group">
                         <input type="hidden" wire:model="campaign_id">
-                        <label for="exampleFormControlInput1">campaign_name</label>
+                        <label for="exampleFormControlInput1">Campaign Title</label>
                         <input type="text" class="form-control" wire:model="campaign_name" id="exampleFormControlInput1" placeholder="Enter Name">
                         @error('campaign_name') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
@@ -28,6 +28,11 @@
                         <label for="exampleFormControlInput2">Language Name </label>
                         <input type="text" class="form-control" wire:model="language_name" id="exampleFormControlInput2" placeholder="Enter Language">
                         @error('language_name') <span class="text-danger">{{ $message }}</span>@enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="WebsiteAddress">Website Address </label>
+                        <input type="text" class="form-control" wire:model="url" id="#WebsiteAddress" placeholder="Enter Website Address   ">
+                        @error('url') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
                 </form>
             </div>

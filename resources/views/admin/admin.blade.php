@@ -207,8 +207,9 @@
                                                 <tr>
                                                     @foreach($keywords_ranking as $keword)
                                                         <td>{{$keword->keywordshow->keyword}}</td>
-{{--                                                        <td>{{$campaigns_loc[0]->campaigns}}</td>--}}
-                                                        <td>static</td>
+
+{{--                                                        <td>{{$campaigns_loc[0]->campaigns->location_name}}</td>--}}
+                                                       <td>static</td>
                                                         <td>{{$keword->google_organic}}</td>
                                                         <td>{{$keword->google_organic_stats}}</td>
                                                         <td>{{$keword->google_organic_change}}</td>

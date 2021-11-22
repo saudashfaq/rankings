@@ -76,12 +76,12 @@ class KeywordRankings extends Model
         return $this->hasOne(Keyword::class, "keyword_id", "keyword_id");
 
     }
-    public function campaigns()
-    {
-
-        return $this->hasMany(Campaign::class, "campaign_id", "id");
-
-    }
+//    public function campaigns()
+//    {
+//
+//        return $this->hasOne(Campaign::class, "campaign_id", "campaign_id");
+//
+//    }
 
 
 

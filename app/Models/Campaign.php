@@ -29,10 +29,10 @@ class Campaign extends Model
         return $this->hasMany(Keyword::class);
     }
 
-    public function keyword_ranking()
-    {
-        return $this->hasMany(KeywordRankings::class);
-    }
+//    public function keyword_ranking()
+//    {
+//        return $this->hasOne(KeywordRankings::class);
+//    }
 
 
     protected $primaryKey = 'campaign_id';

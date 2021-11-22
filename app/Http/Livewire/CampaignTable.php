@@ -131,6 +131,7 @@ class CampaignTable extends TableComponent
         $this->campaign_id = $id;
         $this->campaign_name = $campaign->campaign_name;
         $this->language_name = $campaign->language_name;
+        $this->url = $campaign->url;
 
     }
 
@@ -146,6 +147,7 @@ class CampaignTable extends TableComponent
         $validatedDate = $this->validate([
             'campaign_name' => 'required',
             'language_name' => 'required',
+            'url' => 'required',
         ]);
 
         if ($this->campaign_id) {
@@ -153,6 +155,7 @@ class CampaignTable extends TableComponent
             $campaign->update([
                 'campaign_name' => $this->campaign_name,
                 'language_name' => $this->language_name,
+                'url' => $this->url,
             ]);
             $this->updateMode = false;
             session()->flash('message', 'Campaign Updated Successfully.');

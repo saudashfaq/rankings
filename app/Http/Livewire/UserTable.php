@@ -162,7 +162,7 @@ class UserTable extends TableComponent
 //            Column::make('ID')->searchable()->sortable(),
             Column::make('Name')->searchable()->sortable(),
             Column::make('Email')->searchable()->sortable(),
-            Column::make('Role'),
+//            Column::make('Role'),
             Column::make('Action')->view('livewire.users.edit_user'),
 //            Column::make('Created At')->searchable()->sortable(),
 //            Column::make('Updated At')->searchable()->sortable(),
