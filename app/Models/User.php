@@ -28,7 +28,8 @@ class User extends Authenticatable
      * @var array
      */
 
-    public function user(){
+    public function user()
+    {
 
         return $this->belongsTo(UserAccount::class, 'id', 'id');
 
@@ -46,7 +47,7 @@ class User extends Authenticatable
         'email',
         'password',
         'user_account_id',
-      'user_send_invitation'
+        'user_send_invitation'
 
 
     ];

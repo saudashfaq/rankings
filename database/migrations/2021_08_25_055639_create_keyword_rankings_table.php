@@ -33,6 +33,7 @@ class CreateKeywordRankingsTable extends Migration
             $table->tinyInteger('bing_organic_change')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -42,6 +43,6 @@ class CreateKeywordRankingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('keywordRankings');
+        Schema::dropIfExists('KeywordRankings');
     }
 }

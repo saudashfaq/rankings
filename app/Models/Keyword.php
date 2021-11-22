@@ -33,6 +33,7 @@ class Keyword extends Model
 
     ];
 
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -68,7 +69,7 @@ class Keyword extends Model
     }
 //    public function keyword_ranking()
 //    {
-//        return $this->hasMany(keywordRankings::class );
+//        return $this->hasMany(KeywordRankings::class );
 //    }
 
 }

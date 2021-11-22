@@ -105,7 +105,7 @@ class CampaignTable extends TableComponent
             'campaign_logo' => 'ab',
             'country_iso_code' => $this->location['country_iso_code'],
             'rank_check_due_time' => "00:00:01",
-            'rank_check_frequncy'=>1,
+            'rank_check_frequncy' => 1,
             'user_account_id' => auth()->user()->user_account_id,
 
 
@@ -173,7 +173,7 @@ class CampaignTable extends TableComponent
 
         ]);
 
-       $this->keyword = Keyword::create([
+        $this->keyword = Keyword::create([
 
             'keyword' => $this->keywords,
             'user_account_id' => auth()->user()->user_account_id,
@@ -181,7 +181,7 @@ class CampaignTable extends TableComponent
 
         ]);
         keywordRankings::create([
-            'keyword_id' =>$this->keyword->keyword_id,
+            'keyword_id' => $this->keyword->keyword_id,
             'user_account_id' => auth()->user()->user_account_id,
             'campaign_id' => $this->keyword->campaign_id,
         ]);
