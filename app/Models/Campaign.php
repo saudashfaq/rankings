@@ -23,10 +23,12 @@ class Campaign extends Model
 
     }
 
+
     public function keyword()
     {
         return $this->hasMany(Keyword::class);
     }
+
     public function keyword_ranking()
     {
         return $this->hasMany(KeywordRankings::class);

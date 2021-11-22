@@ -23,6 +23,7 @@ class KeywordRankings extends Model
 //
 //    }
 
+
     protected $table = 'keyword_rankings';
     protected $fillable = [
         'keyword_id',
@@ -66,12 +67,7 @@ class KeywordRankings extends Model
 
     }
 
-    public function campaigns()
-    {
 
-        return $this->belongsTo(Campaign::class, 'campaign_id', 'id');
-
-    }
 
     public function keywordshow()
     {
@@ -79,6 +75,13 @@ class KeywordRankings extends Model
         return $this->hasOne(Keyword::class, "keyword_id", "id");
 
     }
+//    public function campaigns()
+//    {
+//
+//        return $this->hasOne(Campaign::class, "campaign_id", "id");
+//
+//    }
+
 
 
 }

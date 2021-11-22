@@ -13,6 +13,7 @@ class loginController extends Controller
 {
     //
 
+
     public function redirect()
     {
         return Socialite::driver('google')->redirect();

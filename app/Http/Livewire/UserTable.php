@@ -13,6 +13,7 @@ use Kdion4891\LaravelLivewireTables\TableComponent;
 
 class UserTable extends TableComponent
 {
+
     public $users, $name, $email, $user_id;
     public $updateMode = false;
     public $checkbox = true;

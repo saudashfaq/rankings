@@ -15,20 +15,19 @@ class UserAccount extends Model
      *
      * @var array
      */
-  public function users(){
+    public function users()
+    {
 
-      return $this->hasMany(User::class);
-  }
+        return $this->hasMany(User::class);
+    }
 
 
-
-    protected $table ='user_accounts';
+    protected $table = 'user_accounts';
     protected $fillable = [
         'business_name',
         'email',
         'logo',
         'status',
-
 
 
     ];
@@ -38,8 +37,6 @@ class UserAccount extends Model
      *
      * @var array
      */
-
-
 
 
 }

@@ -46,6 +46,7 @@ class UserController extends Controller
 
             ]);
 
+
             $user_account=UserAccount::where('id')->first();
 
 
