@@ -48,10 +48,11 @@ class HomeController extends Controller
 
 
         $keywords_ranking = KeywordRankings::with('keywordshow')->get()->where('user_account_id', auth()->user()->user_account_id);
-       $campaigns_loc = KeywordRankings::with('campaigns')->get();
-      //dd($campaigns_loc);
+//       $campaigns_loc = KeywordRankings::with('campaigns')->get();
+//         dd($campaigns_loc);
 
-        return view('admin.admin', compact('keywords_ranking','campaigns_loc'));
+//        return view('admin.admin', compact('keywords_ranking','campaigns_loc'));
+        return view('admin.admin', compact('keywords_ranking'));
     }
     //
 }
