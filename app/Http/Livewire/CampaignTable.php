@@ -61,7 +61,7 @@ class CampaignTable extends TableComponent
     public function query()
     {
 
-        return Campaign::query()->where('user_id', auth()->user()->id);
+        return Campaign::query()->where('user_account_id', auth()->user()->user_account_id);
 
     }
 

@@ -26,22 +26,24 @@ class loginController extends Controller
             $user = Socialite::driver('google')->user();
             $findUser = User::where('google_id', $user->id)->first();
 
-            if ($findUser) {
+            if($findUser) {
                 Auth::login($findUser);
                 return redirect()->intended('dashboard');
             } else {
 
-//                UserAccount::create([
-//                    'business_name'=>'a',
-//                    'email' =>$user->email,
-//                    'logo' => 'a',
-//                    'status' => 1,
-//                ]);
+               $this->user_account= UserAccount::create([
+                    'business_name'=>'a',
+                    'email' =>$user->email,
+                    'google_id' => $user->id,
+                    'logo' => 'a',
+                    'status' => 1,
+                ]);
                 $addUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
-                    'password' => encrypt('mypassword')
+                    'password' => encrypt('mypassword'),
+                    'user_account_id'=> $this->user_account->id,
                 ]);
 
                 Auth::login($addUser);
@@ -52,6 +54,7 @@ class loginController extends Controller
             dd($exception->getMessage());
         }
     }
+
 
 
 //    //for facebook

@@ -133,7 +133,7 @@
 {{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
 {{--                </a>--}}
                 <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google
+                    <i class="fab fa-google-plus mr-2"></i> Sign Up using Google
                 </a>
 
             </div>
