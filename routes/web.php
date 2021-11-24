@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Models\User;
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\CampaignsController;
 use App\Http\Controllers\UserController;
 

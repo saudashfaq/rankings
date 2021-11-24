@@ -28,6 +28,7 @@ class UserAccount extends Model
         'email',
         'logo',
         'status',
+        'google_id',
 
 
     ];

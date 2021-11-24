@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,8 @@
     <!-- Google Font: Source Sans Pro -->
     <!-- Google Font: Source Sans Pro -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -30,13 +30,12 @@
 
 {{-- Following 3 files only load when needed --}}
 
-    <!-- overlayScrollbars -->
+<!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
-    {{--<link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">--}}
-    <!-- summernote -->
+{{--<link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">--}}
+<!-- summernote -->
     {{--<link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">--}}
-
 
 
     @livewireStyles
@@ -51,7 +50,6 @@
 @include('layouts.sidebar')
 
 @include('layouts.main_content')
-
 
 
 @livewireScripts
@@ -133,8 +131,8 @@
 @yield('custom_script')
 
 <script>
-    var xValues = [50,60,70,80,90,100,110,120,130,140,150];
-    var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+    var xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+    var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
 
     new Chart("myChart", {
         type: "line",
@@ -151,7 +149,7 @@
         options: {
             legend: {display: false},
             scales: {
-                yAxes: [{ticks: {min: 6, max:16}}],
+                yAxes: [{ticks: {min: 6, max: 16}}],
             }
         }
     });
