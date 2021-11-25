@@ -27,7 +27,7 @@
 
             <x-guest-layout>
 
-{{--                <x-jet-validation-errors class="mb-4"/>--}}
+                {{--                <x-jet-validation-errors class="mb-4"/>--}}
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -41,13 +41,10 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="input-group mb-3">
                         {{--                            <x-jet-label for="email" value="{{ __('Email') }}" />--}}
-                        <x-jet-input id="email" class="form-control" placeholder="Enter Your Email" type="email" name="email"
+                        <x-jet-input id="email" class="form-control" placeholder="Enter Your Email" type="email"
+                                     name="email"
                                      :value="old('email')" required/>
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -88,16 +85,16 @@
                     <div class="row">
                         <div class="col-8">
 
-                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                                <label for="agreeTerms">
-                                    I agree to the <a href="#">terms</a>
-                                </label>
+                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                            <label for="agreeTerms">
+                                I agree to the <a href="#">terms</a>
+                            </label>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                                            <x-jet-button class="btn btn-primary btn-block">
-                                                {{ __('Register') }}
-                                            </x-jet-button>
+                            <x-jet-button class="btn btn-primary btn-block">
+                                {{ __('Register') }}
+                            </x-jet-button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -118,6 +115,19 @@
                             </x-jet-label>
                         </div>
                     @endif
+{{--                    Password: <input type="password" value="" id="myInput"><br><br>--}}
+{{--                    <input type="checkbox" onclick="myFunction()">Show Password--}}
+
+{{--                    <script>--}}
+{{--                        function myFunction() {--}}
+{{--                            var x = document.getElementById("myInput");--}}
+{{--                            if (x.type === "password") {--}}
+{{--                                x.type = "text";--}}
+{{--                            } else {--}}
+{{--                                x.type = "password";--}}
+{{--                            }--}}
+{{--                        }--}}
+{{--                    </script>--}}
 
 
                 </form>
@@ -127,9 +137,10 @@
 
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
-{{--                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">--}}
-{{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
-{{--                </a>--}}
+                <!-- /.social-auth-links -->
+                {{--                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">--}}
+                {{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
+                {{--                </a>--}}
                 <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> Sign Up using Google
                 </a>
@@ -140,8 +151,6 @@
                     {{ __('Already registered?') }}
                 </a>
             </div>
-
-            <!-- /.social-auth-links -->
 
         </div>
         <!-- /.login-card-body -->

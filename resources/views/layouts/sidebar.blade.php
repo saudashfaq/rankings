@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <!-- Brand Logo -->
-    <a href="redirects" class="brand-link">
+    <a href="/dashboard" class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
              style="opacity: .8">
         <span class="brand-text font-weight-light">Dashboard</span>
@@ -70,13 +70,14 @@
                 </li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <div class="nav-item">
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                         this.closest('form').submit(); " role="button">
-{{--                            <i class="fas fa-sign-out-alt"></i>--}}
+                            {{--                            <i class="fas fa-sign-out-alt"></i>--}}
                             {{ __('Log Out') }}
                         </a>
-                    </div>
+                    </li>
                 </form>
             </ul>
 

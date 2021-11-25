@@ -17,7 +17,7 @@ class CreateUserAccountsTable extends Migration
         Schema::create('user_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('business_name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('logo');
             $table->tinyInteger('status');
             $table->timestamps();
