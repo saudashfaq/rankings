@@ -24,7 +24,7 @@ class KeywordRankings extends Model
 //    }
 
 
-    protected $table = 'keywordrankings';
+    protected $table = 'keyword_rankings';
     protected $primaryKey ='id';
     protected $fillable = [
         'keyword_id',

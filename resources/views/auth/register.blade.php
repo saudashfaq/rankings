@@ -134,18 +134,20 @@
 
             </x-guest-layout>
 
-
+            {{--
             <div class="social-auth-links text-center mb-3">
                 <p>- OR -</p>
                 <!-- /.social-auth-links -->
                 {{--                <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">--}}
                 {{--                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook--}}
-                {{--                </a>--}}
+                {{--                </a>
                 <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
                     <i class="fab fa-google-plus mr-2"></i> Sign Up using Google
                 </a>
 
             </div>
+        --}}
+
             <div class="flex items-center justify-end mt-10">
                 <a class="text-center" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

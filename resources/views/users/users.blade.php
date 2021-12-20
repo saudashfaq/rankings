@@ -15,7 +15,6 @@
 
 @section('content')
 
-    {{--@livewire('users')--}}
     @livewire('user-table')
 
 @endsection

@@ -6,6 +6,7 @@ use App\Events\SendInvitationMail;
 use App\Models\User;
 use App\Models\UserAccount;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Kdion4891\LaravelLivewireTables\Column;
@@ -14,7 +15,7 @@ use Kdion4891\LaravelLivewireTables\TableComponent;
 class UserTable extends TableComponent
 {
 
-    public $users, $name, $email, $user_id;
+    public $users, $name, $email, $role, $user_id, $roles;
     public $updateMode = false;
     public $checkbox = true;
     public $checkbox_attribute = 'id';
@@ -24,37 +25,48 @@ class UserTable extends TableComponent
     public $header_view = 'users.users-table-header';
 
 
+
+    public function render()
+    {
+        $this->roles = Role::where('name', '!==', 'app_admin')->get();
+        return $this->tableView();
+
+    }
+
+
     public function query()
     {
         return User::query()->where('user_account_id', auth()->user()->user_account_id);
     }
 
 
-    public function createTeamMember(Request $request){
+
+
+
+    public function inviteTeamMemeber(){
         {
-            $this->validate($request, [
-                'name'     =>  'required',
-                'email'  =>  'required|email',
-                'url' => [
-                    'required|url',
-                    'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-                ],
+            $role_names = $this->roles->pluck('name')->toArray();
+            $role_names = implode(',', $role_names);
+            //dd($role_names);
+            $this->validate([
+                'name'     =>  'required|min:3|max:20',
+                'email'  =>  'required|email|unique:users|min:3|max:100',
+                'role' => "required|in:$role_names",
 
             ]);
-            $name = $request->input('name');
-            $email = $request->input('email');
 
             $user = new User();
-            $user->name = $name;
-            $user->email = $email;
-            $user->user_account_id=auth()->user()->id;
-            $user->user_send_invitation='1';
+            $user->name = $this->name;
+            $user->email = $this->email;
+            $user->user_account_id = auth()->user()->user_account_id;
+            $user->parent_user_id = auth()->user()->id;
+            $user->user_send_invitation = '1';
             $user->save();
 
-            $user->assignRole($request->input('role'));
+            $user->assignRole($this->role);
 
             event(new SendInvitationMail($user));
-            return back()->with('success', 'Your Invitation Will be Send!',array('timeout' => 3000));
+            return back()->with('success', 'Invitation has been sent.',array('timeout' => 3000));
 
         }
 
@@ -130,6 +142,7 @@ class UserTable extends TableComponent
     {
         $this->updateMode = false;
         $this->resetInputFields();
+        $this->resetErrorBag();
 
 
     }
@@ -162,7 +175,7 @@ class UserTable extends TableComponent
 //            Column::make('ID')->searchable()->sortable(),
             Column::make('Name')->searchable()->sortable(),
             Column::make('Email')->searchable()->sortable(),
-//            Column::make('Role'),
+            Column::make('Role')->searchable()->sortable(),
             Column::make('Action')->view('livewire.users.edit_user'),
 //            Column::make('Created At')->searchable()->sortable(),
 //            Column::make('Updated At')->searchable()->sortable(),

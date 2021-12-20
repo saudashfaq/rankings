@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Keyword;
 use App\Models\keywordRankings;
 use App\Models\UserAccount;
+use Illuminate\Support\Facades\Session;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 use App\Dataforseo\RestClient;
@@ -176,6 +177,8 @@ class CampaignTable extends TableComponent
 
         ]);
 
+        //dd($this->campaign->campaign_id);
+        //dd($this->keywords);
         $this->keyword = Keyword::create([
 
             'keyword' => $this->keywords,
@@ -183,14 +186,13 @@ class CampaignTable extends TableComponent
             'campaign_id' => $this->campaign->campaign_id,
 
         ]);
-        keywordRankings::create([
-            'keyword_id' => $this->keyword->keyword_id,
-            'user_account_id' => auth()->user()->user_account_id,
-            'campaign_id' => $this->keyword->campaign_id,
-        ]);
 
-        $this->increaseStep();
+
         $this->resetInput();
+        $this->resetInputFields();
+        $this->resetErrorBag();
+        $this->decreaseStep();
+        Session::put('success','Campaign created successfully');
 
     }
 
@@ -274,12 +276,12 @@ class CampaignTable extends TableComponent
         $this->validateData();
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
+            $this->reset();
             $this->currentStep = $this->totalSteps;
         }
     }
 
-    public
-    function decreaseStep()
+    public function decreaseStep()
     {
         $this->resetErrorBag();
         $this->currentStep--;
@@ -315,15 +317,13 @@ class CampaignTable extends TableComponent
     }
 
 
-    public
-    function deleteChecked()
+    public function deleteChecked()
     {
         Campaign::whereIn('campaign_id', $this->checkbox_values)->delete();
     }
 
 
-    public
-    function columns()
+    public function columns()
     {
         return [
             Column::make('campaign_name')->searchable()->sortable(),

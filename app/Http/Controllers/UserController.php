@@ -32,48 +32,6 @@ class UserController extends Controller
     }
 
 
-    public function createTeamMember(Request $request){
-        {
-
-            $this->validate($request, [
-                'name'     =>  'required',
-                'email'  =>  'required|email',
-                'url' => [
-                    'required|url',
-                    'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
-
-                ],
-
-            ]);
-
-
-            $user_account=UserAccount::where('id')->first();
-
-
-            $name = $request->input('name');
-            $email = $request->input('email');
-
-
-            $user = new User();
-            $user->name = $name;
-            $user->email = $email;
-            $user->user_account_id=auth()->user()->id;
-            $user->user_send_invitation='1';
-            $user->save();
-
-            $user->assignRole($request->input('role'));
-
-            event(new SendInvitationMail($user));
-            return back()->with('success', 'Your Invitation Will be Send!' );
-        }
-
-        //store data in DB
-        //assign role
-        //Event sendInvitationToTeamMember ok
-        //URL should encrypted, validate 60 minutes validity
-        //URL would have user id ok
-
-    }
 
 
     public function showAcceptInvitationFormToTeamMember(Request $request) {
@@ -134,8 +92,8 @@ class UserController extends Controller
 
     {
         $users = User::get();
-
-        return view('users.users',compact('users'));
+        $roles = Role::where('name', '!=', 'app_admin')->select('id', 'name')->get();
+        return view('users.users')->with(['users'=>$users, 'roles' => $roles]);
 
     }
 //    /**

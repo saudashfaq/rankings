@@ -24,10 +24,19 @@ class loginController extends Controller
         try {
 
             $user = Socialite::driver('google')->user();
+
+            dd($user);
+
             $findUser = User::where('email', $user->email)->first();
+
+            dd($findUser);
+
             if($findUser) {
+
                 Auth::login($findUser);
+
                 return redirect()->intended('dashboard');
+
             } else {
 
                $this->user_account= UserAccount::create([
@@ -45,73 +54,20 @@ class loginController extends Controller
                     'user_account_id'=> $this->user_account->id,
                 ]);
 
+                dd($addUser, $this->user_account);
                 Auth::login($addUser);
                 return redirect()->intended('dashboard');
             }
 
-        } catch (\Exception $exception) {
-            dd($exception->getMessage());
+        } catch (\Exception $e) {
+            echo '<pre>';
+            dd($e->getMessage(), $e->getCode(), $e->getLine(), $e->getFile());
         }
 
-//            try {
-//                $user = Socialite::driver('google')->user();
-//            } catch (\Exception $e) {
-//                return redirect('/login');
-//            }
-//            // only allow people with @company.com to login
-//            if(explode("@", $user->email)[1] !== 'company.com'){
-//                return redirect()->to('/');
-//            }
-//            // check if they're an existing user
-//            $existingUser = User::where('email', $user->email)->first();
-//            if($existingUser){
-//                // log them in
-//                auth()->login($existingUser, true);
-//            } else {
-//                // create a new user
-//                $newUser                  = new User;
-//                $newUser->name            = $user->name;
-//                $newUser->email           = $user->email;
-//                $newUser->google_id       = $user->id;
-//                $newUser->password       = $user->password;
-//                $newUser->save();
-//                auth()->login($newUser, true);
-//            }
-//            return redirect()->to('dashboard');
     }
 
 
 
 
-//    //for facebook
-//    public function redirectToFacebook()
-//    {
-//        return Socialite::driver('facebook')->redirect();
-//    }
-//
-//    public function signinFacebook()
-//    {
-//        try {
-//            $user = Socialite::driver('facebook')->user();
-//            $findUser = User::where('facebook_id', $user->id)->first();
-//
-//            if ($findUser) {
-//                Auth::login($findUser);
-//                return redirect('/redirects');
-//            } else {
-//                $addUser = User::create([
-//                    'name' => $user->name,
-//                    'email' => $user->email,
-//                    'facebook_id' => $user->id,
-//                    'password' => encrypt('mypasswords')
-//                ]);
-//
-//                Auth::login($addUser);
-//                return redirect('/redirects');
-//            }
-//
-//        } catch (\Exception $e) {
-//            dd($e->getMessage());
-//        }
-//    }
+
 }

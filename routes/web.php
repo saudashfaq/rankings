@@ -52,29 +52,32 @@ Route::get('registration/{name}/{email}', [\App\Http\Controllers\UserController:
 Route::post('/create', [\App\Http\Controllers\UserController::class, 'createPasswordForTeamMember']);
 //for mail invitation
 //Route::get('/sendemail/send',[\App\Http\Controllers\SendEmailController::class,'sendInvitationToTeamMember']);
-Route::get('/sendemail/send', [\App\Http\Controllers\UserController::class, 'createTeamMember']);
+Route::post('/invite-team-member', [\App\Http\Controllers\UserController::class, 'inviteTeamMember'])->name('invite-team-member');
 
 
 Route::get('auth/google', [\App\Http\Controllers\loginController::class, 'redirect']);
 
 Route::get('auth/google/callback', [\App\Http\Controllers\loginController::class, 'signinGoogle']);
 
-//Route::get('auth/facebook', [\App\Http\Controllers\loginController::class, 'redirectToFacebook']);
-//
-//Route::get('auth/facebook/callback', [\App\Http\Controllers\loginController::class, 'signinFacebook']);
-
 
 ////change status for activiation
 //Route::get('change-status',[\App\Http\Controllers\UserController::class,'changeStatus']);
 
-//Route::view('users','livewire.home');
+
+
+/*
+ *
+ *
+ *  TODO: do not remove the following
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 //for create roles
 Route::get('create_roles', function () {
 
-    \App\Models\Role::create(['name' => 'app_admin']);
-    \App\Models\Role::create(['name' => 'administrator']);
-    \App\Models\Role::create(['name' => 'teamMember']);
+    Role::create(['name' => 'app_admin']);
+    Role::create(['name' => 'administrator']);
+    Role::create(['name' => 'teamMember']);
 
 
     echo "Your Role Is Created";
@@ -94,7 +97,7 @@ Route::get('create_permission', function () {
 
     echo "Your Permission Is Created";
 });
-
+*/
 
 
 //Route::get('assign_role', function (){

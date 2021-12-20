@@ -16,6 +16,10 @@
 
 @section('content')
 
-    @livewire('campaign-table')
+    @auth()
+
+        @livewire('campaign-table')
+
+    @endauth
 
 @endsection
