@@ -15,13 +15,14 @@ class CampaignTable extends TableComponent
 {
 
     public $sort_attribute = 'campaign_id';
-    public $campaign_name;
-    public $url;
+    public $campaign_title;
+    public $website_address;
     public $location = [];
     public $time_zone;
     public $group;
+    public $language_code;
+    public $language_name;
     public $language;
-    public $report_delivery;
     public $keywords;
     public $frameworks = [];
     public $totalSteps = 3;
@@ -47,7 +48,6 @@ class CampaignTable extends TableComponent
     public $country;
     public $Campaign;
     public $campaign;
-    public $language_name;
 
 
     /**
@@ -57,10 +57,11 @@ class CampaignTable extends TableComponent
      */
 
 
-    protected $listeners = ['locationUpdated'];
+    protected $listeners = ['locationUpdated', 'languageUpdated'];
 
     public function query()
     {
+
 
         return Campaign::query()->where('user_account_id', auth()->user()->user_account_id);
 
@@ -73,10 +74,16 @@ class CampaignTable extends TableComponent
         $this->location = $event[0];
     }
 
+    public function languageUpdated($event)
+    {
+        $this->language = $event[0];
+    }
+
     private function resetInput()
     {
-        $this->campaign_name = null;
+        $this->campaign_title = null;
         $this->language_code = null;
+        $this->language_name = null;
     }
 
 
@@ -84,35 +91,41 @@ class CampaignTable extends TableComponent
     {
 
         $this->validate([
-            'campaign_name' => 'required',
-            'url' => 'required',
+            'campaign_title' => 'required',
+            'website_address' => 'required',
             'location' => 'required',
             'language' => 'required',
-
+            'time_zone' => 'required'
 
         ]);
         //dd($this->location);
 
         $this->campaign = Campaign::create([
             'user_id' => auth()->user()->id,
-            'campaign_name' => $this->campaign_name,
-            'language_name' => $this->language,
+            'user_account_id' => auth()->user()->user_account_id,
+
+            'campaign_name' => $this->campaign_title,
+            'url' => $this->website_address,
+            'campaign_logo' => 'N',
+
+            'language_name' => $this->language['language_name'],
+            'language_code' => $this->language['language_code'],
+
             'location' => $this->location['location_code'],
-            'url' => $this->url,
-            'location_name' => $this->location['location_name'],
-            'status' => 2,
             'location_code' => $this->location['location_code'],
-            'language_code' => 'en',
-            'campaign_logo' => 'ab',
+            'location_name' => $this->location['location_name'],
             'country_iso_code' => $this->location['country_iso_code'],
+
+            'time_zone' => $this->time_zone,
+
+            'status' => 2,
+
             'rank_check_due_time' => "00:00:01",
             'rank_check_frequncy' => 1,
-            'user_account_id' => auth()->user()->user_account_id,
 
 
         ]);
 
-        $this->language_code = 'abc';
         $this->increaseStep();
 
         //$this->resetInput();
@@ -121,8 +134,9 @@ class CampaignTable extends TableComponent
     private function resetInputFields()
     {
 
-        $this->campaign_name = '';
+        $this->campaign_title = '';
         $this->language_name = '';
+        $this->language_code = '';
     }
 
     public function edit($id)
@@ -130,16 +144,19 @@ class CampaignTable extends TableComponent
         $this->updateMode = true;
         $campaign = Campaign::where('campaign_id', $id)->first();
         $this->campaign_id = $id;
-        $this->campaign_name = $campaign->campaign_name;
+        $this->campaign_title = $campaign->campaign_name;
         $this->language_name = $campaign->language_name;
-        $this->url = $campaign->url;
+        $this->website_address = $campaign->url;
 
     }
 
     public function cancel()
     {
+        session()->remove('success');
+        session()->remove('failed');
         $this->updateMode = false;
         $this->resetInputFields();
+
     }
 
     public function update()
@@ -154,9 +171,9 @@ class CampaignTable extends TableComponent
         if ($this->campaign_id) {
             $campaign = Campaign::find($this->campaign_id);
             $campaign->update([
-                'campaign_name' => $this->campaign_name,
+                'campaign_name' => $this->campaign_title,
                 'language_name' => $this->language_name,
-                'url' => $this->url,
+                'url' => $this->website_address,
             ]);
             $this->updateMode = false;
             session()->flash('message', 'Campaign Updated Successfully.');
@@ -169,30 +186,54 @@ class CampaignTable extends TableComponent
     public function addKeywords()
     {
 
-//        dd($this->campaign->campaign_id);
-
-        //dd($this->keywords);
         $this->validate([
             'keywords' => 'required',
 
         ]);
 
+
+        if (empty($this->campaign->campaign_id)) {
+            session()->flash('failed', 'Something is wrong, please refresh page and try again.');
+            $this->decreaseStep();
+        }
+
         //dd($this->campaign->campaign_id);
-        //dd($this->keywords);
-        $this->keyword = Keyword::create([
 
-            'keyword' => $this->keywords,
-            'user_account_id' => auth()->user()->user_account_id,
-            'campaign_id' => $this->campaign->campaign_id,
+        $kws = explode("\n", $this->keywords);
 
-        ]);
+        $data = array();
+
+        if (count($kws) > 0) {
+
+            $uaid = auth()->user()->user_account_id;
+            $cid = $this->campaign->campaign_id;
+
+            foreach ($kws as $kw) {
+
+                if(empty($kw)) continue;
+                $data [] = [
+                    'keyword' => $kw,
+                    'user_account_id' => $uaid,
+                    'campaign_id' => $cid,
+
+                ];
+            }
+
+            if( count($data) > 0 ) {
+
+                Keyword::insert( $data );
+
+            }
+
+        }
 
 
         $this->resetInput();
         $this->resetInputFields();
         $this->resetErrorBag();
         $this->decreaseStep();
-        Session::put('success','Campaign created successfully');
+
+        session()->flash('success', 'Campaign successfully created.');
 
     }
 
@@ -202,78 +243,10 @@ class CampaignTable extends TableComponent
     }
 
 
-    public function updatedLocation()
-    {
-
-        dd($this->location);
-        //$row = 1;
-        $res = [];
-        $this->country;
-
-        $this->locations = $this->getLocations();
-
-        dd($this->locations);
-
-
-    }
-
-
-    public function getLocations()
-    {
-
-        if (!empty($this->country)) {
-
-            try {
-                //Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-dashboard
-                $client = new RestClient('https://api.dataforseo.com/', null, env('DFS_API_USER'), env('DFS_API_PASS'));
-                //do something
-            } catch (RestClientException $e) {
-                echo "\n";
-                print "HTTP code: {$e->getHttpCode()}\n";
-                print "Error code: {$e->getCode()}\n";
-                print "Message: {$e->getMessage()}\n";
-                print  $e->getTraceAsString();
-                echo "\n";
-                exit();
-            }
-
-            try {
-                // using this method you can get a list of locations
-                // GET /v3/serp/google/locations
-                // in addition to 'google' you can also set other search engine
-                // the full list of possible parameters is available in documentation
-                $country = 'AT';//TODO: uncomment $this->country;
-                $results = $client->get("/v3/serp/google/locations/$country");
-                //dd($results['tasks'][0]['result']);
-                if (!empty($results) && !empty($results['tasks'][0]['result'])) {
-
-                    $this->locations = $results['tasks'][0]['result'];
-                }
-                //$this->locations =
-
-            } catch (RestClientException $e) {
-                echo "\n";
-                print "HTTP code: {$e->getHttpCode()}\n";
-                print "Error code: {$e->getCode()}\n";
-                print "Message: {$e->getMessage()}\n";
-                print  $e->getTraceAsString();
-                echo "\n";
-            }
-            $client = null;
-
-            //return $client->get('/v3/serp/google/locations/'.$this->country);
-
-        }
-
-        return [];
-
-    }
-
-
     public function increaseStep()
     {
         $this->resetErrorBag();
-        $this->validateData();
+        //$this->validateData();
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->reset();
@@ -288,32 +261,6 @@ class CampaignTable extends TableComponent
         if ($this->currentStep < 1) {
             $this->currentStep = 1;
         }
-    }
-
-    public function validateData()
-    {
-
-        if ($this->currentStep == 1) {
-            $this->validate([
-                'campaign_name' => 'required',
-                'url' => 'required|string',
-                'location' => 'required',
-                'group' => 'required',
-                'language' => 'required',
-
-            ]);
-        } elseif ($this->currentStep == 2) {
-            $this->validate([
-                'keywords' => 'required',
-
-            ]);
-        }
-//        elseif ($this->currentStep == 3) {
-//            $this->validate([
-//
-//            ]);
-//        }
-
     }
 
 

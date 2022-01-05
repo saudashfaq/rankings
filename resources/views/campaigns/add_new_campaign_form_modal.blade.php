@@ -20,8 +20,27 @@
             </div>
             @include('general.form_validation_errors')
 
+            {{-- TODO: verify the following else remove it --}}
+            @section('scripts')
+                $('.alert').alert('close')
+            @endsection
+
             <div class="modal-body">
                 <p></p>
+                <div>
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                            @php session()->remove('success') @endphp
+                        </div>
+                    @endif
+                        @if (session()->has('failed'))
+                            <div class="alert alert-danger">
+                                {{ session('failed') }}
+                                @php session()->remove('failed') @endphp
+                            </div>
+                        @endif
+                </div>
                 <!-- SELECT2 EXAMPLE -->
                 <div class="card card-default">
                     <!-- /.card-header -->
@@ -43,13 +62,13 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="">Campaign Title</label>
+                                                            <label for="campaign_title">Campaign Title</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Your campaign name"
-                                                                   wire:model.defer="campaign_name">
+                                                                   wire:model.defer="campaign_title" id="campaign_title">
 
                                                             <span
-                                                                class="text-danger">@error('campaign_name'){{ $message }}@enderror</span>
+                                                                class="text-danger">@error('campaign_title'){{ $message }}@enderror</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -57,7 +76,7 @@
                                                             <label for="">Website Address</label>
                                                             <input type="text" class="form-control"
                                                                    placeholder="Enter Website Address"
-                                                                   wire:model.defer="url">
+                                                                   wire:model.defer="website_address">
                                                             <span
                                                                 class="text-danger">@error('url'){{ $message }}@enderror</span>
                                                         </div>
@@ -79,40 +98,28 @@
                                                     </div>
 
 
-                                                    {{--                                                    <input type="text" name="language_code" value="abc" wire:model="language_code">--}}
                                                     <div class="col-md-6">
-                                                        <div class="form-group">
 
-                                                            <label for="">Group</label>
-                                                            <select class="form-control" wire:model.defer="group">
-                                                                <option value="" selected>Select Group</option>
-                                                                <option value="Sample1">Sample1</option>
-                                                                <option value="Sample2">Sample2</option>
-                                                            </select>
-                                                            <span
-                                                                class="text-danger">@error('group'){{ $message }}@enderror</span>
-                                                        </div>
+                                                        @livewire('campaigns.form.languages')
 
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="">Language</label>
-                                                            <select class="form-control" wire:model.defer="language">
-                                                                <option value="">Select</option>
-                                                                <option value="English">English</option>
-                                                                <option value="Urdu">Urdu</option>
-                                                            </select>
-                                                            <span
-                                                                class="text-danger">@error('language'){{ $message }}@enderror</span>
-                                                        </div>
 
-                                                    </div>
+
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for=""> Report Delivery Time zone</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="Enter Report Delivery Time zone "
-                                                                   wire:model.defer="time_zone">
+
+                                                            <label for="time_zone"> Report Delivery Time zone</label>
+                                                            <select class="form-control"
+                                                                   id="time_zone"
+                                                                    wire:model.defer="time_zone">
+
+                                                                @foreach(timezone_identifiers_list() as $timezone)
+
+                                                                    <option value="{{ $timezone }}">{{ $timezone }}</option>
+
+                                                                @endforeach
+
+                                                            </select>
                                                             <span
                                                                 class="text-danger">@error('report_delivery'){{ $message }}@enderror</span>
                                                         </div>
@@ -132,13 +139,13 @@
 
                                     <div class="step-two">
                                         <div class="card">
-                                            <div class="card-header bg-secondary text-white">STEP 2/3 - Enter Keywords
+                                            <div class="card-header bg-secondary text-white">STEP 2/2 - Add Keywords
                                             </div>
                                             <div class="card-body">
                                                 <div class="frameworks d-flex flex-column align-items-left mt-2">
                                                     <textarea name="keywords"
-                                                              placeholder="Press Enter Key To Add New Keywords"
-                                                              wire:model="keywords" cols="50"
+                                                              placeholder="One keyword per line."
+                                                              wire:model.defer="keywords" cols="50"
                                                               rows="5"></textarea>
                                                 </div>
                                                 <span

@@ -84,7 +84,7 @@ class UserTable extends TableComponent
         $name = $request->route('name');
         $email = $request->route('email');
 
-        $user =User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
         return view('users.registration_new_user',['name' => $name, 'email' => $email , 'id' => $user->id]);
 

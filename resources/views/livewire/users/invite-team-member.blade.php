@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="role">Select Role</label>
 
-                        {{ dd($roles) }}
+                        {{-- dd($roles) --}}
                         <select id="role" wire:model.defer="role" name="role" class="form-control">
                             <option disabled>Assign the role</option>
                             @foreach($roles as $role_from_db)

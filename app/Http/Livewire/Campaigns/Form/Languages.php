@@ -5,53 +5,24 @@ namespace App\Http\Livewire\Campaigns\Form;
 use App\Dataforseo\RestClient;
 use Livewire\Component;
 
-class Locations extends Component
+class Languages extends Component
 {
 
-    public $locations = [];
-    public $location;
-    public $selected_location = [];
+    public $language;
+    public $languages = [];
+    public $selected_language = [];
 
-
-    protected $listeners = ['countryUpdated' => 'getLocations'];
 
     public function render()
     {
-        return view('livewire.campaigns.form.locations');
+        $this->getLanguages();
+        return view('livewire.campaigns.form.languages');
     }
 
 
-    public function updated()
+    public function getLanguages()
     {
 
-        //When $this->country is updated we will push
-        // detail of this selected country in a varaible
-        foreach ($this->locations as $index => $location) {
-
-            if ($location['location_name'] === $this->location) {
-
-                $this->selected_location = $location;
-                break;
-
-            }
-
-        }
-
-        $this->emitUp('locationUpdated', [$this->selected_location]);
-
-    }
-
-
-    public function getLocations($payload = null)
-    {
-
-        //dd($payload);
-
-        $selected_country = $payload['selected_country'];
-
-        if (empty($selected_country)) {
-            return false;
-        }
         try {
             //Instead of 'login' and 'password' use your credentials from https://app.dataforseo.com/api-dashboard
             $client = new RestClient('https://api.dataforseo.com/', null, env('DFS_API_USER'), env('DFS_API_PASS'));
@@ -73,14 +44,14 @@ class Locations extends Component
             // in addition to 'google' you can also set other search engine
             // the full list of possible parameters is available in documentation
 
-            $country_iso_code = !empty($selected_country) ? '/' . $selected_country['country_iso_code'] : '';
-            $results = $client->get("/v3/serp/google/locations" . $country_iso_code);
+
+            $results = $client->get("/v3/serp/google/languages");
 
             //dd($results['tasks'][0]['result']);
 
             if (!empty($results) && !empty($results['tasks'][0]['result'])) {
 
-                $this->locations = $results['tasks'][0]['result'];
+                $this->languages = $results['tasks'][0]['result'];
             }
 
 
@@ -94,7 +65,28 @@ class Locations extends Component
         }
         $client = null;
         return [];
+    }
+
+
+    public function updated() {
+
+        //When $this->language is updated we will push
+        // detail of this selected language in a its specific variable
+        foreach ($this->languages as $index => $language)
+        {
+
+            if($language['language_name'] === $this->language)
+            {
+                $this->selected_language = $language;
+                break;
+            }
+
+        }
+
+        //dd($this->selected_language);
+        $this->emitUp('languageUpdated', [$this->selected_language]);
 
     }
+
 
 }

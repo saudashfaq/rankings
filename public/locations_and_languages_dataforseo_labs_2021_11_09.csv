@@ -1,111 +1,91 @@
-location_code,location_name,location_code_parent,country_iso_code,location_type,available_sources,language_name,language_code,keywords,serps
-2012,Algeria,,DZ,Country,google,French,fr,20540142,1442140
-2012,Algeria,,DZ,Country,google,Arabic,ar,6288010,1190350
-2024,Angola,,AO,Country,google,Portuguese,pt,9508193,2071207
-2031,Azerbaijan,,AZ,Country,google,Azeri,az,12835898,366699
-2032,Argentina,,AR,Country,"google,bing",Spanish,es,41392083,4429914
-2036,Australia,,AU,Country,"google,bing",English,en,187320833,16480588
-2040,Austria,,AT,Country,"google,bing",German,de,40930341,3700844
-2048,Bahrain,,BH,Country,google,Arabic,ar,7685237,881169
-2050,Bangladesh,,BD,Country,google,Bengali,bn,18702977,2642698
-2051,Armenia,,AM,Country,google,Armenian,hy,990488,151604
-2056,Belgium,,BE,Country,google,French,fr,23128586,496584
-2056,Belgium,,BE,Country,google,Dutch,nl,45729416,3714029
-2056,Belgium,,BE,Country,google,German,de,11627610,1055497
-2068,Bolivia,,BO,Country,google,Spanish,es,5461232,488477
-2076,Brazil,,BR,Country,google,Portuguese,pt,95571773,14829986
-2100,Bulgaria,,BG,Country,google,Bulgarian,bg,5168296,623204
-2104,"Myanmar (Burma)",,MM,Country,"google,bing",English,en,9351587,1068809
-2112,Belarus,,BY,Country,google,Russian,ru,6043656,1178454
-2116,Cambodia,,KH,Country,"google,bing",English,en,9341057,1087764
-2120,Cameroon,,CM,Country,google,French,fr,3657576,587317
-2124,Canada,,CA,Country,"google,bing",English,en,210128784,17015078
-2124,Canada,,CA,Country,"google,bing",French,fr,106597345,9718443
-2144,"Sri Lanka",,LK,Country,google,English,en,11600585,1157001
-2152,Chile,,CL,Country,"google,bing",Spanish,es,30270127,3257539
-2158,Taiwan,,TW,Region,"google,bing","Chinese (Traditional)",zh-TW,41222080,4545478
-2170,Colombia,,CO,Country,"google,bing",Spanish,es,35526425,3691855
-2188,"Costa Rica",,CR,Country,google,Spanish,es,9300508,572124
-2191,Croatia,,HR,Country,google,Croatian,hr,4571284,694317
-2196,Cyprus,,CY,Country,google,Greek,el,13510482,741386
-2196,Cyprus,,CY,Country,google,English,en,10602170,596273
-2203,Czechia,,CZ,Country,google,Czech,cs,13781254,1579804
-2208,Denmark,,DK,Country,"google,bing",Danish,da,18025578,2778235
-2218,Ecuador,,EC,Country,google,Spanish,es,13416727,1037451
-2222,"El Salvador",,SV,Country,google,Spanish,es,5192105,417273
-2233,Estonia,,EE,Country,google,Estonian,et,2127634,372432
-2246,Finland,,FI,Country,"google,bing",Finnish,fi,14837875,2122733
-2250,France,,FR,Country,"google,bing",French,fr,139529860,18425044
-2276,Germany,,DE,Country,"google,bing",German,de,168511778,24483270
-2288,Ghana,,GH,Country,google,English,en,5994417,736644
-2300,Greece,,GR,Country,google,Greek,el,13651651,1610177
-2320,Guatemala,,GT,Country,google,Spanish,es,9741544,911030
-2344,"Hong Kong",,HK,Region,google,English,en,17670329,1576656
-2344,"Hong Kong",,HK,Region,"google,bing","Chinese (Traditional)",zh-TW,48627305,3791642
-2348,Hungary,,HU,Country,google,Hungarian,hu,10048804,1082688
-2356,India,,IN,Country,"google,bing",English,en,157651286,16180894
-2356,India,,IN,Country,google,Hindi,hi,68569263,15267844
-2360,Indonesia,,ID,Country,"google,bing",English,en,34075794,4510260
-2360,Indonesia,,ID,Country,google,Indonesian,id,73471614,8391033
-2372,Ireland,,IE,Country,"google,bing",English,en,42603713,2431214
-2376,Israel,,IL,Country,google,Hebrew,he,16804033,2142404
-2376,Israel,,IL,Country,google,Arabic,ar,8152184,296816
-2380,Italy,,IT,Country,"google,bing",Italian,it,86416522,10960035
-2384,"Cote d'Ivoire",,CI,Country,google,French,fr,4714248,735844
-2392,Japan,,JP,Country,google,Japanese,ja,183010218,20485716
-2398,Kazakhstan,,KZ,Country,google,Russian,ru,10313546,628231
-2400,Jordan,,JO,Country,google,Arabic,ar,5296274,612053
-2404,Kenya,,KE,Country,google,English,en,15277067,1674288
-2410,"South Korea",,KR,Country,google,Korean,ko,34352308,7553962
-2428,Latvia,,LV,Country,google,Latvian,lv,5942545,876038
-2440,Lithuania,,LT,Country,google,Lithuanian,lt,3453651,591041
-2458,Malaysia,,MY,Country,"google,bing",English,en,25061719,2338474
-2458,Malaysia,,MY,Country,google,Malay,ms,24687320,2818504
-2470,Malta,,MT,Country,google,English,en,2148960,118646
-2484,Mexico,,MX,Country,"google,bing",Spanish,es,67778945,8277094
-2504,Morocco,,MA,Country,google,Arabic,ar,6365237,1190122
-2528,Netherlands,,NL,Country,"google,bing",Dutch,nl,58636754,7127887
-2554,"New Zealand",,NZ,Country,"google,bing",English,en,24190845,1532239
-2558,Nicaragua,,NI,Country,google,Spanish,es,2669686,201034
-2566,Nigeria,,NG,Country,google,English,en,9878102,1173796
-2578,Norway,,NO,Country,"google,bing","Norwegian (Bokmål)",nb,18670381,2944643
-2586,Pakistan,,PK,Country,google,English,en,22166641,2358005
-2586,Pakistan,,PK,Country,google,Urdu,ur,16743809,924549
-2600,Paraguay,,PY,Country,google,Spanish,es,4865328,418417
-2604,Peru,,PE,Country,"google,bing",Spanish,es,25916639,1554276
-2608,Philippines,,PH,Country,"google,bing",English,en,25001656,2371172
-2608,Philippines,,PH,Country,google,Tagalog,tl,23540752,2394865
-2616,Poland,,PL,Country,google,Polish,pl,33581746,3126951
-2620,Portugal,,PT,Country,google,Portuguese,pt,19135052,1586646
-2642,Romania,,RO,Country,google,Romanian,ro,12798016,1603868
-2643,Russia,,RU,Country,google,Russian,ru,70869257,8047504
-2682,"Saudi Arabia",,SA,Country,google,Arabic,ar,28136623,4860654
-2686,Senegal,,SN,Country,google,French,fr,2759114,391941
-2688,Serbia,,RS,Country,google,Serbian,sr,3845925,582091
-2702,Singapore,,SG,Country,"google,bing",English,en,44322069,2676762
-2702,Singapore,,SG,Country,google,"Chinese (Simplified)",zh-CN,23865322,1509333
-2703,Slovakia,,SK,Country,google,Slovak,sk,6968223,1057467
-2704,Vietnam,,VN,Country,"google,bing",English,en,9847846,1180760
-2704,Vietnam,,VN,Country,google,Vietnamese,vi,25828034,1853582
-2705,Slovenia,,SI,Country,google,Slovenian,sl,3585473,674454
-2710,"South Africa",,ZA,Country,google,English,en,34867089,2537727
-2724,Spain,,ES,Country,"google,bing",Spanish,es,107181215,9053180
-2752,Sweden,,SE,Country,"google,bing",Swedish,sv,23943042,3178955
-2756,Switzerland,,CH,Country,"google,bing",German,de,55948419,4050195
-2756,Switzerland,,CH,Country,google,French,fr,62658085,1655145
-2764,Thailand,,TH,Country,google,Thai,th,29703330,3528666
-2784,"United Arab Emirates",,AE,Country,google,Arabic,ar,25705700,1798098
-2784,"United Arab Emirates",,AE,Country,google,English,en,26105039,1565812
-2788,Tunisia,,TN,Country,google,Arabic,ar,6042888,650111
-2792,Turkey,,TR,Country,google,Turkish,tr,36479081,4983551
-2804,Ukraine,,UA,Country,google,Ukrainian,uk,94813506,486421
-2804,Ukraine,,UA,Country,google,Russian,ru,94822229,11524861
-2807,"North Macedonia",,MK,Country,google,Macedonian,mk,6563206,568927
-2818,Egypt,,EG,Country,google,Arabic,ar,22469367,2965187
-2818,Egypt,,EG,Country,google,English,en,11036039,721921
-2826,"United Kingdom",,GB,Country,"google,bing",English,en,304463405,33084711
-2840,"United States",,US,Country,"google,bing",English,en,806109706,169751279
-2840,"United States",,US,Country,google,Spanish,es,87323107,9492153
-2854,"Burkina Faso",,BF,Country,google,French,fr,2945403,391460
-2858,Uruguay,,UY,Country,google,Spanish,es,8384765,595246
-2862,Venezuela,,VE,Country,"google,bing",Spanish,es,34833653,2911939
+2012,Algeria,DZ,Country
+2024,Angola,AO,Country
+2031,Azerbaijan,AZ,Country
+2032,Argentina,AR,Country
+2036,Australia,AU,Country
+2040,Austria,AT,Country
+2048,Bahrain,BH,Country
+2050,Bangladesh,BD,Country
+2051,Armenia,AM,Country
+2056,Belgium,BE,Country
+2068,Bolivia,BO,Country
+2076,Brazil,BR,Country
+2100,Bulgaria,BG,Country
+2104,Myanmar (Burma),MM,Country
+2112,Belarus,BY,Country
+2116,Cambodia,KH,Country
+2120,Cameroon,CM,Country
+2124,Canada,CA,Country
+2144,Sri Lanka,LK,Country
+2152,Chile,CL,Country
+2158,Taiwan,TW,Region
+2170,Colombia,CO,Country
+2188,Costa Rica,CR,Country
+2191,Croatia,HR,Country
+2196,Cyprus,CY,Country
+2203,Czechia,CZ,Country
+2208,Denmark,DK,Country
+2218,Ecuador,EC,Country
+2222,El Salvador,SV,Country
+2233,Estonia,EE,Country
+2246,Finland,FI,Country
+2250,France,FR,Country
+2276,Germany,DE,Country
+2288,Ghana,GH,Country
+2300,Greece,GR,Country
+2320,Guatemala,GT,Country
+2344,Hong Kong,HK,Region
+2348,Hungary,HU,Country
+2356,India,IN,Country
+2360,Indonesia,ID,Country
+2372,Ireland,IE,Country
+2376,Israel,IL,Country
+2380,Italy,IT,Country
+2384,Cote d'Ivoire,CI,Country
+2392,Japan,JP,Country
+2398,Kazakhstan,KZ,Country
+2400,Jordan,JO,Country
+2404,Kenya,KE,Country
+2410,South Korea,KR,Country
+2428,Latvia,LV,Country
+2440,Lithuania,LT,Country
+2458,Malaysia,MY,Country
+2470,Malta,MT,Country
+2484,Mexico,MX,Country
+2504,Morocco,MA,Country
+2528,Netherlands,NL,Country
+2554,New Zealand,NZ,Country
+2558,Nicaragua,NI,Country
+2566,Nigeria,NG,Country
+2578,Norway,NO,Country
+2586,Pakistan,PK,Country
+2600,Paraguay,PY,Country
+2604,Peru,PE,Country
+2608,Philippines,PH,Country
+2616,Poland,PL,Country
+2620,Portugal,PT,Country
+2642,Romania,RO,Country
+2643,Russia,RU,Country
+2682,Saudi Arabia,SA,Country
+2686,Senegal,SN,Country
+2688,Serbia,RS,Country
+2702,Singapore,SG,Country
+2703,Slovakia,SK,Country
+2704,Vietnam,VN,Country
+2705,Slovenia,SI,Country
+2710,South Africa,ZA,Country
+2724,Spain,ES,Country
+2752,Sweden,SE,Country
+2756,Switzerland,CH,Country
+2764,Thailand,TH,Country
+2784,United Arab Emirates,AE,Country
+2788,Tunisia,TN,Country
+2792,Turkey,TR,Country
+2804,Ukraine,UA,Country
+2807,North Macedonia,MK,Country
+2818,Egypt,EG,Country
+2826,United Kingdom,GB,Country
+2840,United States,US,Country
+2854,Burkina Faso,BF,Country
+2858,Uruguay,UY,Country
+2862,Venezuela,VE,Country

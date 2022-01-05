@@ -58,7 +58,6 @@ class Countries extends Component
 
             while (($data = fgetcsv($handle, 300, ",")) !== FALSE) {
 
-
                 //dd($data);
                 if( !empty($this->country) ) {
 
@@ -69,7 +68,7 @@ class Countries extends Component
 
                             'location_code' => $data[0],
                             'location_name' => $data[1],
-                            'country_iso_code' => $data[3]
+                            'country_iso_code' => $data[2]
                         ];
 
                     }
@@ -81,7 +80,7 @@ class Countries extends Component
 
                         'location_code' => $data[0],
                         'location_name' => $data[1],
-                        'country_iso_code' => $data[3]
+                        'country_iso_code' => $data[2]
                     ];
 
                }
@@ -94,6 +93,7 @@ class Countries extends Component
         fclose($handle);
 
         $this->countries = $res;
+        //dd($this->countries);
 
     }
 
