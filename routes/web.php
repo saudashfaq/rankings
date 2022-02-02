@@ -66,6 +66,7 @@ Route::get('auth/google/callback', [\App\Http\Controllers\loginController::class
  *
  *
  *  TODO: do not remove the following*/
+
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 /**/
@@ -77,21 +78,21 @@ Route::get('create_roles', function () {
     Role::create(['name' => 'teamMember']);
 
 
-    echo "Your Role Is Created";
+    echo "Roles have been created successfully.";
 });
 
 Route::get('create_permission', function () {
 
-    \App\Models\Premission::create(['name' => 'add campaign']);
-    \App\Models\Premission::create(['name' => 'view campaign']);
-    \App\Models\Premission::create(['name' => 'edit campaign']);
-    \App\Models\Premission::create(['name' => 'delete campaign']);
-    \App\Models\Premission::create(['name' => 'add user']);
-    \App\Models\Premission::create(['name' => 'view user']);
-    \App\Models\Premission::create(['name' => 'edit user']);
-    \App\Models\Premission::create(['name' => 'delete user']);
+    Permission::create(['name' => 'add campaign']);
+    Permission::create(['name' => 'view campaign']);
+    Permission::create(['name' => 'edit campaign']);
+    Permission::create(['name' => 'delete campaign']);
+    Permission::create(['name' => 'add user']);
+    Permission::create(['name' => 'view user']);
+    Permission::create(['name' => 'edit user']);
+    Permission::create(['name' => 'delete user']);
 
-    echo "Your Permission Is Created";
+    echo "Permissions have been created successfully.";
 
 });
 
