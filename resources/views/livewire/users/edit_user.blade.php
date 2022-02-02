@@ -1,9 +1,8 @@
 
 {{--<button class="btn btn-primary" wire:click="showUser({{ $model->id }})">Show</button>--}}
 <button data-toggle="modal" data-target="#updateModal" wire:click="edit({{ $model->id }})"
-        class="btn btn-info">
-    <i class="fa fa-edit"></i>
-    Edit
+        class="btn btn-outline-info">
+    <i class="fa fa-user-edit"></i>
 </button>
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -28,6 +27,28 @@
                         <input type="email" class="form-control" wire:model="email" id="exampleFormControlInput2" placeholder="Enter Email">
                         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
                     </div>
+                    <div class="form-group">
+                        <label for="role">Select Role</label>
+
+                        {{-- dd($roles) --}}
+                        {{-- dd($roles) --}}
+                        <select id="role" wire:model.defer="role" name="role" class="form-control">
+                            <option readonly="">Assign Role</option>
+
+
+                            @if( count($roles) > 0)
+
+                                @foreach($roles as $role_from_db)
+
+                                    <option value="{{$role_from_db->name}}" @if($role_from_db->name == $this->role) selected @endif>{{$role_from_db->name}}</option>
+
+                                @endforeach
+
+                            @endif
+                        </select>
+                        <span class="text-danger">@error('role'){{ $message }}@enderror</span>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">

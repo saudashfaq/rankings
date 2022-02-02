@@ -13,7 +13,17 @@ class Locations extends Component
     public $selected_location = [];
 
 
-    protected $listeners = ['countryUpdated' => 'getLocations'];
+    protected $listeners = ['countryUpdated' => 'getLocations', 'parentComponentErrorBag'];
+
+    public function parentComponentErrorBag($errorBag)
+    {
+        $this->setErrorBag($errorBag);
+    }
+
+
+
+
+
 
     public function render()
     {

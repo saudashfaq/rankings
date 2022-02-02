@@ -13,6 +13,17 @@ class Languages extends Component
     public $selected_language = [];
 
 
+
+    protected $listeners = [
+        'parentComponentErrorBag',
+    ];
+
+    public function parentComponentErrorBag($errorBag)
+    {
+        $this->setErrorBag($errorBag);
+    }
+
+
     public function render()
     {
         $this->getLanguages();

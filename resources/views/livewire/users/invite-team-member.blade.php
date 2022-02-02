@@ -3,7 +3,7 @@
 
 {{-- Add New Team Member Button -- Displays the modal further deep in this file --}}
 <button data-toggle="modal" data-target="#createUser"
-        class="btn btn-light ">  <i class="fa fa-user-plus"></i>
+        class="btn btn-light">  <i class="fa fa-user-plus"></i>
     Invite Team Member
 </button>
 
@@ -21,6 +21,8 @@
             {{--@include('general.form_validation_errors')--}}
             <div class="modal-body">
 
+                @include('general.form_validation_errors')
+                @include('general.success_failure_messages')
 
                 <form wire:submit.prevent="">
                     @csrf
@@ -40,11 +42,20 @@
                         <label for="role">Select Role</label>
 
                         {{-- dd($roles) --}}
+                        {{-- dd($roles) --}}
                         <select id="role" wire:model.defer="role" name="role" class="form-control">
-                            <option disabled>Assign the role</option>
-                            @foreach($roles as $role_from_db)
-                                <option value="{{$role_from_db->name}}">{{$role_from_db->name}}</option>
-                            @endforeach
+                            <option readonly="">Assign Role</option>
+
+
+                            @if( count($roles) > 0)
+
+                                @foreach($roles as $role_from_db)
+
+                                    <option value="{{$role_from_db->name}}">{{$role_from_db->name}}</option>
+
+                                @endforeach
+
+                            @endif
                         </select>
                         <span class="text-danger">@error('role'){{ $message }}@enderror</span>
                     </div>

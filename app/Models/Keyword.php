@@ -15,9 +15,14 @@ class Keyword extends Model
      * @var array
      */
 
+    protected $table = 'keywords';
 
     protected $primaryKey = 'keyword_id';
-    protected $table = 'keywords';
+
+    public $timestamps = true;
+
+
+
     protected $fillable = [
         'keyword',
         'user_account_id',
@@ -30,7 +35,7 @@ class Keyword extends Model
      * @var array
      */
     protected $hidden = [
-
+        //
     ];
 
 
@@ -57,19 +62,15 @@ class Keyword extends Model
     public function userAccount()
     {
 
-        return $this->belongsTo(UserAccount::class, 'user_account_id', 'id');
+        return $this->belongsTo(UserAccount::class, 'user_account_id', 'keyword_id');
 
     }
 
-    public function campaigns()
+    public function campaign()
     {
 
-        return $this->belongsTo(Campaign::class, 'campaign_id', 'keyword_id');
+        return $this->belongsTo(Campaign::class, 'campaign_id' );
 
     }
-//    public function keyword_ranking()
-//    {
-//        return $this->hasMany(KeywordRankings::class );
-//    }
 
 }

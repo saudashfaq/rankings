@@ -17,42 +17,10 @@ class HomeController extends Controller
 
     public function index()
     {
-//
-//        $role = Role::create(['name' => 'write']);
-//        $Permission = Permission::create(['name' => 'write a post']);
-//
-//        $role =Role::findById(1);
-////
-//        $permission = Permission::findById(1);
-//       $role->givePermissionTo($permission);
 
 
-//        (auth()->user()->givePermissionTo('write a post'));
-
-        //(auth()->user()->assignRole('write'));
-//        return auth()->user()->permissions;
-//        $permission = Permission::create(['name' => 'writer a post']);
-//        $role =Role::findById(5);
-//        $role->givePermissionTo($permission);
-
-//    $keywords=Keyword::where('user_account_id', auth()->user()->id)->pluck('keyword');
-
-//    $keywords_ranking =keywordRankings::with('keywordshow')->where('id', auth()->user()->id)->get();
-
-//    $keywords_ranking =keywordRankings::with('keywordshow')->get();
-
-
-//    $keywords_ranking = KeywordRankings::with('keywordshow')->get();
-//    $keywords_ranking = $key->toArray();
-        //dd($key[0]->keywordshow);
-
-
-        $keywords_ranking = KeywordRankings::with('keywordshow')->get()->where('user_account_id', auth()->user()->user_account_id);
-//       $campaigns_loc = KeywordRankings::with('campaigns')->get();
-//         dd($campaigns_loc);
-
-//        return view('admin.admin', compact('keywords_ranking','campaigns_loc'));
-        return view('admin.admin', compact('keywords_ranking'));
+        $keywords_rankings = KeywordRankings::with('keyword', 'campaign')/*->where('user_account_id', auth()->user()->user_account_id)*/->paginate(10);
+        return view('admin.dashboard' )->with('keywords_rankings', $keywords_rankings);
     }
     //
 }

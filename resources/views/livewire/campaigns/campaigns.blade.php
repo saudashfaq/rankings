@@ -1,4 +1,3 @@
-
 @extends('layouts.main_layout')
 
 @section('title') {{'campaigns'}} @endsection
@@ -18,7 +17,7 @@
 
     @auth()
 
-        @livewire('campaign-table')
+        @livewire('campaigns.campaign-table')
 
     @endauth
 

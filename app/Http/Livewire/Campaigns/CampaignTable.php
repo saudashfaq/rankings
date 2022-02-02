@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Campaigns;
 
 use App\Models\Campaign;
 use App\Models\Keyword;
@@ -11,14 +11,23 @@ use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
 use App\Dataforseo\RestClient;
 
+
 class CampaignTable extends TableComponent
 {
 
+    public $per_page = 25;
     public $sort_attribute = 'campaign_id';
+    public $checkbox_side = 'right';
+    public $checkbox_attribute = 'campaign_id';
+    public $header_view = 'livewire.campaigns.campaigns-table-header';
+    public $checkbox = true;
+
+
     public $campaign_title;
+    public $campaign_keywords;
     public $website_address;
     public $location = [];
-    public $time_zone;
+    public $report_delivery_time;
     public $group;
     public $language_code;
     public $language_name;
@@ -39,29 +48,16 @@ class CampaignTable extends TableComponent
     public $user_account_id;
     public $location_name;
     public $keyword;
-    public $checkbox_side = 'right';
     public $campaign_id;
     public $updateMode = false;
-    public $checkbox = true;
-    public $checkbox_attribute = 'campaign_id';
-    public $header_view = 'campaigns.campaigns-table-header';
     public $country;
-    public $Campaign;
     public $campaign;
-
-
-    /**
-     * TODO:
-     * when start writing in the location field it should filter from locations
-     * and show in the data list
-     */
 
 
     protected $listeners = ['locationUpdated', 'languageUpdated'];
 
     public function query()
     {
-
 
         return Campaign::query()->where('user_account_id', auth()->user()->user_account_id);
 
@@ -87,15 +83,23 @@ class CampaignTable extends TableComponent
     }
 
 
+    public function dehydrate()
+    {
+        $this->emit('parentComponentErrorBag', $this->getErrorBag());
+    }
+
+
+
     public function store()
     {
 
         $this->validate([
-            'campaign_title' => 'required',
-            'website_address' => 'required',
-            'location' => 'required',
-            'language' => 'required',
-            'time_zone' => 'required'
+            'campaign_title' => 'required|min:3|max:255',
+            'website_address' => 'required|min:5|max:255',
+            'location' => 'required|max:191',
+            'language' => 'required|max:100',
+            'report_delivery_time' => 'required|max:7',
+            'keywords' => 'required'
 
         ]);
         //dd($this->location);
@@ -116,7 +120,7 @@ class CampaignTable extends TableComponent
             'location_name' => $this->location['location_name'],
             'country_iso_code' => $this->location['country_iso_code'],
 
-            'time_zone' => $this->time_zone,
+            'report_delivery_time' => $this->report_delivery_time,
 
             'status' => 2,
 
@@ -126,27 +130,74 @@ class CampaignTable extends TableComponent
 
         ]);
 
-        $this->increaseStep();
+        $this->addKeywords();
 
-        //$this->resetInput();
+        $this->resetInput();
     }
 
     private function resetInputFields()
     {
+        $this->resetErrorBag();
 
         $this->campaign_title = '';
         $this->language_name = '';
         $this->language_code = '';
+        $this->report_delivery_time = '';
+        $this->website_address = '';
+        $this->location_name = '';
+        $this->location_code = '';
+        $this->campaign_id = '';
+        $this->language = [];
+        $this->location = [];
+        $this->country = [];
+        $this->keywords = '';
+
+        /*$this-> = '';
+        $this-> = '';
+        $this-> = '';
+        $this-> = '';
+        $this-> = '';*/
     }
 
     public function edit($id)
     {
+        //dd($id);
         $this->updateMode = true;
-        $campaign = Campaign::where('campaign_id', $id)->first();
+
+        $campaign = Campaign::where('campaign_id', $id)->where('user_account_id', auth()->user()->user_account_id)->firstOrFail();
+
         $this->campaign_id = $id;
         $this->campaign_title = $campaign->campaign_name;
-        $this->language_name = $campaign->language_name;
+        $this->report_delivery_time = $campaign->report_delivery_time;
         $this->website_address = $campaign->url;
+
+
+    }
+
+
+    public function addMoreKeywordsModel($id)
+    {
+
+        $this->campaign = Campaign::where('campaign_id',$id)->where('user_account_id', auth()->user()->user_account_id)->with('keywords')->first();
+        $this->campaign_title = $this->campaign->campaign_name;
+        $this->campaign_keywords = $this->campaign->keywords;
+
+    }
+
+
+    public function storeMoreKeywords()
+    {
+
+        $this->validate(
+            [
+                'keywords'=>'required'
+            ]
+        );
+
+        $this->addKeywords();
+
+        //session()->flash('message', 'Keywords added successfully.');
+        Session::flash('success', 'Keywords added successfully.');
 
     }
 
@@ -162,23 +213,30 @@ class CampaignTable extends TableComponent
     public function update()
     {
 
-        $validatedDate = $this->validate([
-            'campaign_name' => 'required',
-            'language_name' => 'required',
-            'url' => 'required',
+
+        $this->validate([
+            'campaign_title' => 'required|min:3|max:255',
+            'report_delivery_time' => 'required|max:7',
+            'website_address' => 'required|min:5|max:255',
         ]);
 
-        if ($this->campaign_id) {
+        if($this->campaign_id) {
+
             $campaign = Campaign::find($this->campaign_id);
-            $campaign->update([
+
+            $updated = $campaign->update([
                 'campaign_name' => $this->campaign_title,
-                'language_name' => $this->language_name,
+                'report_delivery_time' => $this->report_delivery_time,
                 'url' => $this->website_address,
             ]);
-            $this->updateMode = false;
-            session()->flash('message', 'Campaign Updated Successfully.');
-            $this->resetInputFields();
 
+            if( $updated ) {
+
+                $this->updateMode = false;
+                session()->flash('success', 'Campaign updated successfully.');
+                $this->resetInputFields();
+
+            }
         }
     }
 
@@ -186,15 +244,10 @@ class CampaignTable extends TableComponent
     public function addKeywords()
     {
 
-        $this->validate([
-            'keywords' => 'required',
-
-        ]);
-
-
         if (empty($this->campaign->campaign_id)) {
+
             session()->flash('failed', 'Something is wrong, please refresh page and try again.');
-            $this->decreaseStep();
+
         }
 
         //dd($this->campaign->campaign_id);
@@ -221,65 +274,45 @@ class CampaignTable extends TableComponent
 
             if( count($data) > 0 ) {
 
-                Keyword::insert( $data );
+                $count = Campaign::where('user_account_id', $uaid)->where('campaign_id', $cid)->count();
+                if( $count ) {
+
+                    Keyword::insert( $data );
+                }
+
 
             }
 
         }
 
-
         $this->resetInput();
         $this->resetInputFields();
         $this->resetErrorBag();
-        $this->decreaseStep();
 
         session()->flash('success', 'Campaign successfully created.');
 
+
     }
 
-    public function mount()
-    {
-        $this->currentStep = 1;
-    }
-
-
-    public function increaseStep()
-    {
-        $this->resetErrorBag();
-        //$this->validateData();
-        $this->currentStep++;
-        if ($this->currentStep > $this->totalSteps) {
-            $this->reset();
-            $this->currentStep = $this->totalSteps;
-        }
-    }
-
-    public function decreaseStep()
-    {
-        $this->resetErrorBag();
-        $this->currentStep--;
-        if ($this->currentStep < 1) {
-            $this->currentStep = 1;
-        }
-    }
 
 
     public function deleteChecked()
     {
-        Campaign::whereIn('campaign_id', $this->checkbox_values)->delete();
+        Campaign::whereIn('campaign_id', $this->checkbox_values)->where('user_account_id', auth()->user()->user_account_id)->delete();
     }
 
 
     public function columns()
     {
         return [
-            Column::make('campaign_name')->searchable()->sortable(),
-            Column::make('location_name')->searchable()->sortable(),
-            Column::make('language_name')->searchable()->sortable(),
+
+            Column::make('Campaign', 'campaign_name')->searchable()->sortable(),
+            Column::make('Location','location_name')->searchable()->sortable(),
+            Column::make('Language','language_name')->searchable()->sortable(),
             //Column::make('user_id')->searchable()->sortable(),
-            Column::make('Action')->view('livewire.campaigns.edit_campaign'),
-//            Column::make('Created At')->searchable()->sortable(),
-//            Column::make('Updated At')->searchable()->sortable(),
+            Column::make('Edit')->view('livewire.campaigns.edit_campaign'),
+            Column::make('Add Keywords')->view('livewire.campaigns.add_more_keywords_to_campaign'),
+
         ];
     }
 }

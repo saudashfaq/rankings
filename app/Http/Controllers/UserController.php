@@ -22,11 +22,11 @@ use Illuminate\Database;
 
 class UserController extends Controller
 {
-    //
+
     public function showTeamMemberInvitationForm(Request $request){
 
 
-       $roles= \App\Models\Role::all();
+       $roles= Role::all();
 //       Role::create(['name' => 'app_admin', 'administrator','teamMember']);
         return view('pages.teammemberinvitationform',['roles'=>$roles]);
     }
@@ -37,17 +37,12 @@ class UserController extends Controller
     public function showAcceptInvitationFormToTeamMember(Request $request) {
 
         $name = $request->route('name');
+
         $email = $request->route('email');
 
         $user =User::where('email', $email)->first();
 
         return view('users.registration_new_user',['name' => $name, 'email' => $email , 'id' => $user->id]);
-
-        //validate secure URL okk
-        //get user id from url ok
-        //get detail from DB or this user id ok
-        //show this detail on form ok
-
 
     }
 
@@ -68,58 +63,23 @@ class UserController extends Controller
         ]);
 
         $id = $request->input('id');
+
         $password = $request->input('password');
 
-
         User::where('id',$id)->update(['password'=> Hash::make($password)]);
-
-
 
         echo "Your are register Now you can Login ";
     }
 
 
-    //validate request ok
-
-        //valid password should be 8 chracters long and should have one special character) ok
-
-        //make password hash and store in DB ok
-        //now if team member wants to login, he should be ok
-
-
-
     public function index()
-
     {
         $users = User::get();
-        $roles = Role::where('name', '!=', 'app_admin')->select('id', 'name')->get();
-        return view('users.users')->with(['users'=>$users, 'roles' => $roles]);
+        $roles = Role::whereNotIn('name',  ['app_admin'])->get();
+        //dd($roles);
+        return view('livewire.users.users')->with(['users'=>$users, 'roles' => $roles]);
 
     }
-//    /**
-//     * Show the application dashboard.
-//     *
-//     * @return \Illuminate\Http\Response
-//     */
-//
-//    public function show($id) {
-//        $users = DB::select('select * from users where id = ?',[$id]);
-//        return view('pages.edit-users',['users'=>$users]);
-//    }
-//    public function edit(Request $request,$id) {
-//        $name = $request->input('name');
-//        $email = $request->input('email');
-//
-//        DB::update('update users set name = ?,email=? where id = ?',[$name,$email,$id]);
-//        echo "Record updated successfully.";
-//    }
-//    public function destroy($id) {
-//        DB::delete('delete from users where id = ?',[$id]);
-////        echo "Record deleted successfully.";
-//        return redirect('/pages.user');
-//    }
-
-
 
 
 }

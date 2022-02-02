@@ -8,7 +8,7 @@
 {{--        class="btn btn-light ">--}}
 {{--    Check--}}
 {{--</button>--}}
-@include('campaigns.add_new_campaign_form_modal')
+@include('livewire.campaigns.add_new_campaign_form_modal')
 
 
 

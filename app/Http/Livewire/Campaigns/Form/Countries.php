@@ -13,6 +13,8 @@ class Countries extends Component
     public $selected_country = [];
 
 
+
+
     public function render()
     {
 
@@ -20,8 +22,6 @@ class Countries extends Component
         return view('livewire.campaigns.form.countries');
 
     }
-
-
 
 
     public function updated() {
@@ -140,6 +140,9 @@ class Countries extends Component
         $this->countries = $res;
 
     }
+
+
+
 
 
 

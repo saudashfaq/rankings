@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -22,16 +23,16 @@ class User extends Authenticatable
     use HasRoles;
 
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
 
-    public function user()
+/*    public function role()
+    {
+        return $this->getRoleNames();
+    }*/
+
+    public function userAccount()
     {
 
-        return $this->belongsTo(UserAccount::class, 'id', 'id');
+        return $this->belongsTo(UserAccount::class, 'user_account_id', 'id');
 
     }
 //    public function useraccounts(){
@@ -48,7 +49,6 @@ class User extends Authenticatable
         'password',
         'user_account_id',
         'user_send_invitation'
-
 
     ];
 
@@ -81,12 +81,6 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function getRoleAttribute() {
-
-        return $this->getRoleNames()->first;
-
-    }
 
 
 }

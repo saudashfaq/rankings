@@ -70,18 +70,19 @@ class KeywordRankings extends Model
 
 
 
-    public function keywordshow()
+    public function keyword()
     {
 
-        return $this->hasOne(Keyword::class, "keyword_id", "keyword_id");
+        return $this->belongsTo(Keyword::class, "keyword_id", 'keyword_id');
 
     }
-//    public function campaigns()
-//    {
-//
-//        return $this->hasOne(Campaign::class, "campaign_id", "campaign_id");
-//
-//    }
+
+    public function campaign()
+    {
+
+        return $this->belongsTo(Campaign::class, "campaign_id", 'campaign_id');
+
+    }
 
 
 

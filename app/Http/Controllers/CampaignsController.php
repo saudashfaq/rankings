@@ -11,7 +11,7 @@ class CampaignsController extends Controller
 {
 
     public function index(){
-        return view('campaigns.campaigns');
+        return view('livewire.campaigns.campaigns');
     }
 
 }

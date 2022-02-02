@@ -1,28 +1,28 @@
 @extends('layouts.main_layout')
 
-@section('title') {{'user'}} @endsection
+@section('title') {{'keyword'}} @endsection
 
-@section('page-title', 'User Management')
+@section('page-title', 'Keyword Management')
 
 @section('bread-crumb')
 
     <li class="breadcrumb-item"><a href="redirects">Home</a></li>
-    <li class="breadcrumb-item active">Users</li>
+    <li class="breadcrumb-item active">Keywords</li>
 
 @endsection
 
-@section('section-title', 'Users')
+@section('section-title', 'Keywords')
 
 @section('content')
 
-    @livewire('user-table')
+    @livewire('keywords.keyword-table')
 
 @endsection
 
 @section('custom-script')
 
     <script type="text/javascript">
-        window.livewire.on('userStore', () => {
+        window.livewire.on('keywordStore', () => {
             $('#exampleModal').modal('hide');
         });
 

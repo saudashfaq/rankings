@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Users;
 
 use App\Events\SendInvitationMail;
 use App\Models\User;
@@ -11,24 +11,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Kdion4891\LaravelLivewireTables\Column;
 use Kdion4891\LaravelLivewireTables\TableComponent;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserTable extends TableComponent
 {
 
-    public $users, $name, $email, $role, $user_id, $roles;
+    public $users, $name, $email, $role, $user_id;
+    public $roles;
     public $updateMode = false;
     public $checkbox = true;
     public $checkbox_attribute = 'id';
+    public $user;
 
     //This is livewire datatable property we can provide anything in
     //header view
-    public $header_view = 'users.users-table-header';
+    public $header_view = 'livewire.users.users-table-header';
 
 
 
     public function render()
     {
-        $this->roles = Role::where('name', '!==', 'app_admin')->get();
+        $this->roles = Role::where('name', '!=', 'app_admin')->select('id','name')->get();
         return $this->tableView();
 
     }
@@ -38,9 +42,6 @@ class UserTable extends TableComponent
     {
         return User::query()->where('user_account_id', auth()->user()->user_account_id);
     }
-
-
-
 
 
     public function inviteTeamMemeber(){
@@ -61,11 +62,21 @@ class UserTable extends TableComponent
             $user->user_account_id = auth()->user()->user_account_id;
             $user->parent_user_id = auth()->user()->id;
             $user->user_send_invitation = '1';
+
+            try {
+                event(new SendInvitationMail($user));
+            } catch (\Exception $e) {
+
+                if(!empty($e->getMessage())) {
+                    return back()->with('failed', 'Invitation sending was failed. Please try again. '. $e->getMessage(), array('timeout' => 10000));
+                }
+
+            }
+
             $user->save();
 
             $user->assignRole($this->role);
 
-            event(new SendInvitationMail($user));
             return back()->with('success', 'Invitation has been sent.',array('timeout' => 3000));
 
         }
@@ -132,6 +143,8 @@ class UserTable extends TableComponent
     {
         $this->updateMode = true;
         $user = User::where('id',$id)->first();
+        $this->role = $user->getRoleNames()->first();
+        $this->roles = empty($this->roles) ? Role::where('name', '!=', 'app_admin')->select('id','name')->get()->toArray() : $this->roles;
         $this->user_id = $id;
         $this->name = $user->name;
         $this->email = $user->email;
@@ -150,17 +163,24 @@ class UserTable extends TableComponent
 
     public function update()
     {
+        $role_names = $this->roles->pluck('name')->toArray();
         $validatedDate = $this->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'role' => "required",
+            'role' => Rule::in($role_names)
         ]);
 
         if ($this->user_id) {
             $user = User::find($this->user_id);
             $user->update([
+
                 'name' => $this->name,
                 'email' => $this->email,
+
             ]);
+
+            $user->syncRoles($this->role);
             $this->updateMode = false;
             session()->flash('message', 'Users Updated Successfully.');
             $this->resetInputFields();
@@ -175,7 +195,7 @@ class UserTable extends TableComponent
 //            Column::make('ID')->searchable()->sortable(),
             Column::make('Name')->searchable()->sortable(),
             Column::make('Email')->searchable()->sortable(),
-            Column::make('Role')->searchable()->sortable(),
+            //Column::make('Role')->view($this->role()),
             Column::make('Action')->view('livewire.users.edit_user'),
 //            Column::make('Created At')->searchable()->sortable(),
 //            Column::make('Updated At')->searchable()->sortable(),

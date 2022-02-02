@@ -16,7 +16,7 @@ class Campaign extends Model
      * @var array
      */
 
-    public function campaigns()
+    public function userAccount()
     {
 
         return $this->belongsTo(UserAccount::class, 'user_account_id', 'campaign_id');
@@ -24,9 +24,9 @@ class Campaign extends Model
     }
 
 
-    public function keyword()
+    public function keywords()
     {
-        return $this->hasMany(Keyword::class);
+        return $this->hasMany(Keyword::class, 'campaign_id');
     }
 
 //    public function keyword_ranking()
@@ -38,12 +38,10 @@ class Campaign extends Model
     protected $primaryKey = 'campaign_id';
     protected $table = 'campaigns';
     protected $fillable = [
-
-
         'campaign_name',
         'language_name',
         'location_name',
-        //'search_term',
+        'report_delivery_time',
         'url',
         'user_id',
         'status',
